@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="11.5 11.5 77 77" width="100%" height="100%">
+  <defs>
+    <!-- Exact Blue Gradient Background matching the source image lighting -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2E75F6" />
+      <stop offset="100%" stop-color="#1558DB" />
+    </linearGradient>
+  </defs>
+
+  <!-- Edge-to-edge circular background (radius exactly 38.5 to fill the 77x77 viewBox) -->
+  <circle cx="50" cy="50" r="38.5" fill="url(#bgGradient)" />
+
+  <!-- Highly detailed, structurally accurate wallet icon, scaled up significantly -->
+  <g fill="#FFFFFF">
+    
+    <!-- 1. The Main Body (Back panel of the wallet, establishing depth) -->
+    <path d="M 30 36
+             C 30 33.5 31.5 32 34 32
+             L 66 32
+             C 69.5 32 72 34.5 72 38
+             L 72 64
+             C 72 67.5 69.5 70 66 70
+             L 34 70
+             C 31.5 70 30 68.5 30 66
+             Z" />
+
+    <!-- 2. The Top Flap (The folded top of a real bifold wallet) -->
+    <path d="M 30 36
+             L 72 36
+             L 72 43
+             C 72 44.5 71 45 70 45
+             L 32 45
+             C 31 45 30 44 30 43
+             Z" />
+
+    <!-- 3. The Main Compartment Cutout (Negative space creating the pocket) -->
+    <rect x="35" y="48" width="26" height="16" rx="2" fill="#1558DB" />
+
+    <!-- 4. The Card Slot (A classic horizontal slit found on real wallets) -->
+    <rect x="35" y="51.5" width="26" height="3" rx="1.5" fill="#FFFFFF" />
+
+    <!-- 5. The Secure Clasp / Strap (The realistic snap closure on the right) -->
+    <path d="M 63 47
+             L 66 47
+             C 70 47 72 49.5 72 53
+             C 72 56.5 70 59 66 59
+             L 63 59
+             C 60.5 59 59 57.5 59 55
+             L 59 51
+             C 59 48.5 60.5 47 63 47
+             Z" />
+             
+    <!-- 6. The Clasp Cutout Detail (Adding realistic shadow/depth to the clasp) -->
+    <path d="M 63.5 50.5
+             L 65.5 50.5
+             C 67.5 50.5 68.5 51.5 68.5 53
+             C 68.5 54.5 67.5 55.5 65.5 55.5
+             L 63.5 55.5
+             C 62.2 55.5 61.5 54.5 61.5 53.5
+             L 61.5 52.5
+             C 61.5 51.5 62.2 50.5 63.5 50.5
+             Z" fill="#1558DB" />
+             
+  </g>
+</svg>
