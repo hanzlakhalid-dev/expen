@@ -30,7 +30,7 @@
                     data-light="Assests/Icons light/Light mode theme icon.svg"
                     src="Assests/Icons light/Dark mode theme icon.svg" alt="">
             </button>
-            <button class="mobile-add-btn" aria-label="Add transaction">
+            <button class="addTransactions-btn" aria-label="Add transaction">
                 <img src="Assests/Icons dark/Add icon.svg" alt="">
             </button>
         </div>
@@ -125,10 +125,20 @@
                     <div class="left-analytics-graph">
                         <div class="header-analytics">
                             <h2 class="heading-analytics">Expenses by Category</h2>
-                            <button class="filter-analytics">This Month <img
-                                    src="Assests/Icons light/Drop down icon.svg"
+                            <label for="filterDate_dashboard" class="dashboard-month-filter">
+                                <img class="calendar-icon" src="Assests/Icons light/Calendar icon.svg"
+                                    data-light="Assests/Icons light/Calendar icon.svg"
+                                    data-dark="Assests/Icons dark/Calendar icon.svg" alt="">
+                                <select class="filter-select" id="filterDate_dashboard">
+                                    <option value="this-month">This Month</option>
+                                    <option value="last-month">Last Month</option>
+                                    <option value="this-year">This Year</option>
+                                    <option value="all">All Time</option>
+                                </select>
+                                <img class="select-chevron" src="Assests/Icons light/Drop down icon.svg"
                                     data-light="Assests/Icons light/Drop down icon.svg"
-                                    data-dark="Assests/Icons dark/Drop down icon.svg" alt=""></button>
+                                    data-dark="Assests/Icons dark/Drop down icon.svg" alt="">
+                            </label>
                         </div>
                         <div class="chat-container-dashboard">
                             <div class="chart-by-expense-category">
@@ -165,6 +175,18 @@
                                 </li>
                                 <li>
                                     <span class="legend-dot" style="background-color: #8b5cf6;"></span>
+                                    <span>Entertainment</span>
+                                    <span class="legend-amount">$290</span>
+                                    <span class="legend-percent">5%</span>
+                                </li>
+                                <li>
+                                    <span class="legend-dot" style="background-color: #ec4899;"></span>
+                                    <span>Health</span>
+                                    <span class="legend-amount">$80</span>
+                                    <span class="legend-percent">73%</span>
+                                </li>
+                                <li>
+                                    <span class="legend-dot" style="background-color: #06b6d4;"></span>
                                     <span>Others</span>
                                     <span class="legend-amount">$590</span>
                                     <span class="legend-percent">55%</span>
@@ -261,6 +283,9 @@
                             <option value="bills">Bills</option>
                             <option value="shopping">Shopping</option>
                             <option value="education">Education</option>
+                            <option value="entertainment">Entertainment</option>
+                            <option value="transport">Transport</option>
+                            <option value="health">Health</option>
                             <option value="others">Others</option>
                         </select>
                         <img class="select-chevron" src="Assests/Icons light/Drop down icon.svg"
@@ -298,271 +323,279 @@
 
                     <ul class="transaction-table">
 
-    <li class="transaction-row" data-transaction-keyword="Salary" data-category="salary"
-        data-type="income" data-date="2024-05-24">
-        <span class="cell-icon"><img src="Assests/Icons light/wallet-icon.svg" alt=""></span>
-        <span class="cell-date">
-            <span class="date-main">May 24, 2024</span>
-            <span class="date-sub">10:30 AM</span>
-        </span>
-        <span class="cell-desc">
-            <span class="desc-title">Salary</span>
-            <span class="desc-sub">Monthly salary</span>
-        </span>
-        <span class="cell-category"><span class="pill pill-green">Salary</span></span>
-        <span class="cell-type type-income">Income</span>
-        <span class="cell-amount amount-income">+$2,500.00</span>
-        <span class="cell-actions">
-            <button class="icon-btn delete-btn" aria-label="Delete">
-                <img src="Assests/Icons light/Delete icon.svg" alt="">
-            </button>
-        </span>
-        <span class="cell-chevron"><img src="Assests/Icons light/Drop down icon.svg"
-                data-light="Assests/Icons light/Drop down icon.svg"
-                data-dark="Assests/Icons dark/Drop down icon.svg" alt=""></span>
-    </li>
+                        <!-- ================= THIS MONTH (September 2026) ================= -->
 
-    <li class="transaction-row" data-transaction-keyword="Groceries" data-category="food"
-        data-type="expense" data-date="2024-05-23">
-        <span class="cell-icon"><img src="Assests/Icons light/food.svg" alt=""></span>
-        <span class="cell-date">
-            <span class="date-main">May 23, 2024</span>
-            <span class="date-sub">07:45 PM</span>
-        </span>
-        <span class="cell-desc">
-            <span class="desc-title">Groceries</span>
-            <span class="desc-sub">Walmart</span>
-        </span>
-        <span class="cell-category"><span class="pill pill-red">Food</span></span>
-        <span class="cell-type type-expense">Expense</span>
-        <span class="cell-amount amount-expense">-$65.40</span>
-        <span class="cell-actions">
-            <button class="icon-btn delete-btn" aria-label="Delete">
-                <img src="Assests/Icons light/Delete icon.svg" alt="">
-            </button>
-        </span>
-        <span class="cell-chevron"><img src="Assests/Icons light/Drop down icon.svg"
-                data-light="Assests/Icons light/Drop down icon.svg"
-                data-dark="Assests/Icons dark/Drop down icon.svg" alt=""></span>
-    </li>
+                        <li class="transaction-row" data-transaction-keyword="Salary" data-category="salary"
+                            data-type="income" data-date="2026-09-24">
+                            <span class="cell-icon"><img src="Assests/Icons light/wallet-icon.svg" alt=""></span>
+                            <span class="cell-date">
+                                <span class="date-main">Sep 24, 2026</span>
+                                <span class="date-sub">10:30 AM</span>
+                            </span>
+                            <span class="cell-desc">
+                                <span class="desc-title">Salary</span>
+                                <span class="desc-sub">Monthly salary</span>
+                            </span>
+                            <span class="cell-category"><span class="pill pill-green">Salary</span></span>
+                            <span class="cell-type type-income">Income</span>
+                            <span class="cell-amount amount-income">+$2,500.00</span>
+                            <span class="cell-actions">
+                                <button class="icon-btn delete-btn" aria-label="Delete">
+                                    <img src="Assests/Icons light/Delete icon.svg" alt="">
+                                </button>
+                            </span>
+                            <span class="cell-chevron"><img src="Assests/Icons light/Drop down icon.svg"
+                                    data-light="Assests/Icons light/Drop down icon.svg"
+                                    data-dark="Assests/Icons dark/Drop down icon.svg" alt=""></span>
+                        </li>
 
-    <li class="transaction-row" data-transaction-keyword="transport" data-category="transport"
-        data-type="expense" data-date="2024-05-23">
-        <span class="cell-icon"><img src="Assests/Icons light/transport.svg" alt=""></span>
-        <span class="cell-date">
-            <span class="date-main">May 23, 2024</span>
-            <span class="date-sub">05:20 PM</span>
-        </span>
-        <span class="cell-desc">
-            <span class="desc-title">Transport</span>
-            <span class="desc-sub">Uber</span>
-        </span>
-        <span class="cell-category"><span class="pill pill-amber">Transport</span></span>
-        <span class="cell-type type-expense">Expense</span>
-        <span class="cell-amount amount-expense">-$18.90</span>
-        <span class="cell-actions">
-            <button class="icon-btn delete-btn" aria-label="Delete">
-                <img src="Assests/Icons light/Delete icon.svg" alt="">
-            </button>
-        </span>
-        <span class="cell-chevron"><img src="Assests/Icons light/Drop down icon.svg"
-                data-light="Assests/Icons light/Drop down icon.svg"
-                data-dark="Assests/Icons dark/Drop down icon.svg" alt=""></span>
-    </li>
+                        <li class="transaction-row" data-transaction-keyword="Groceries" data-category="food"
+                            data-type="expense" data-date="2026-09-23">
+                            <span class="cell-icon"><img src="Assests/Icons light/food.svg" alt=""></span>
+                            <span class="cell-date">
+                                <span class="date-main">Sep 23, 2026</span>
+                                <span class="date-sub">07:45 PM</span>
+                            </span>
+                            <span class="cell-desc">
+                                <span class="desc-title">Groceries</span>
+                                <span class="desc-sub">Walmart</span>
+                            </span>
+                            <span class="cell-category"><span class="pill pill-red">Food</span></span>
+                            <span class="cell-type type-expense">Expense</span>
+                            <span class="cell-amount amount-expense">-$65.40</span>
+                            <span class="cell-actions">
+                                <button class="icon-btn delete-btn" aria-label="Delete">
+                                    <img src="Assests/Icons light/Delete icon.svg" alt="">
+                                </button>
+                            </span>
+                            <span class="cell-chevron"><img src="Assests/Icons light/Drop down icon.svg"
+                                    data-light="Assests/Icons light/Drop down icon.svg"
+                                    data-dark="Assests/Icons dark/Drop down icon.svg" alt=""></span>
+                        </li>
 
-    <li class="transaction-row" data-transaction-keyword="Freelance Project"
-        data-category="freelance" data-type="income" data-date="2024-05-22">
-        <span class="cell-icon"><img src="Assests/Icons light/freelance.svg" alt=""></span>
-        <span class="cell-date">
-            <span class="date-main">May 22, 2024</span>
-            <span class="date-sub">02:15 PM</span>
-        </span>
-        <span class="cell-desc">
-            <span class="desc-title">Freelance Project</span>
-            <span class="desc-sub">Web design work</span>
-        </span>
-        <span class="cell-category"><span class="pill pill-green">Freelance</span></span>
-        <span class="cell-type type-income">Income</span>
-        <span class="cell-amount amount-income">+$420.00</span>
-        <span class="cell-actions">
-            <button class="icon-btn delete-btn" aria-label="Delete">
-                <img src="Assests/Icons light/Delete icon.svg" alt="">
-            </button>
-        </span>
-        <span class="cell-chevron"><img src="Assests/Icons light/Drop down icon.svg"
-                data-light="Assests/Icons light/Drop down icon.svg"
-                data-dark="Assests/Icons dark/Drop down icon.svg" alt=""></span>
-    </li>
+                        <li class="transaction-row" data-transaction-keyword="transport" data-category="transport"
+                            data-type="expense" data-date="2026-09-21">
+                            <span class="cell-icon"><img src="Assests/Icons light/transport.svg" alt=""></span>
+                            <span class="cell-date">
+                                <span class="date-main">Sep 21, 2026</span>
+                                <span class="date-sub">05:20 PM</span>
+                            </span>
+                            <span class="cell-desc">
+                                <span class="desc-title">Transport</span>
+                                <span class="desc-sub">Uber</span>
+                            </span>
+                            <span class="cell-category"><span class="pill pill-amber">Transport</span></span>
+                            <span class="cell-type type-expense">Expense</span>
+                            <span class="cell-amount amount-expense">-$18.90</span>
+                            <span class="cell-actions">
+                                <button class="icon-btn delete-btn" aria-label="Delete">
+                                    <img src="Assests/Icons light/Delete icon.svg" alt="">
+                                </button>
+                            </span>
+                            <span class="cell-chevron"><img src="Assests/Icons light/Drop down icon.svg"
+                                    data-light="Assests/Icons light/Drop down icon.svg"
+                                    data-dark="Assests/Icons dark/Drop down icon.svg" alt=""></span>
+                        </li>
 
-    <li class="transaction-row" data-transaction-keyword="Electricity Bill" data-category="bills"
-        data-type="expense" data-date="2024-05-22">
-        <span class="cell-icon"><img src="Assests/Icons light/electricity-bill.svg" alt=""></span>
-        <span class="cell-date">
-            <span class="date-main">May 22, 2024</span>
-            <span class="date-sub">11:30 AM</span>
-        </span>
-        <span class="cell-desc">
-            <span class="desc-title">Electricity Bill</span>
-            <span class="desc-sub">Home electricity</span>
-        </span>
-        <span class="cell-category"><span class="pill pill-indigo">Bills</span></span>
-        <span class="cell-type type-expense">Expense</span>
-        <span class="cell-amount amount-expense">-$60.00</span>
-        <span class="cell-actions">
-            <button class="icon-btn delete-btn" aria-label="Delete">
-                <img src="Assests/Icons light/Delete icon.svg" alt="">
-            </button>
-        </span>
-        <span class="cell-chevron"><img src="Assests/Icons light/Drop down icon.svg"
-                data-light="Assests/Icons light/Drop down icon.svg"
-                data-dark="Assests/Icons dark/Drop down icon.svg" alt=""></span>
-    </li>
+                        <li class="transaction-row" data-transaction-keyword="Freelance Project"
+                            data-category="freelance" data-type="income" data-date="2026-09-15">
+                            <span class="cell-icon"><img src="Assests/Icons light/freelance.svg" alt=""></span>
+                            <span class="cell-date">
+                                <span class="date-main">Sep 15, 2026</span>
+                                <span class="date-sub">02:15 PM</span>
+                            </span>
+                            <span class="cell-desc">
+                                <span class="desc-title">Freelance Project</span>
+                                <span class="desc-sub">Web design work</span>
+                            </span>
+                            <span class="cell-category"><span class="pill pill-green">Freelance</span></span>
+                            <span class="cell-type type-income">Income</span>
+                            <span class="cell-amount amount-income">+$420.00</span>
+                            <span class="cell-actions">
+                                <button class="icon-btn delete-btn" aria-label="Delete">
+                                    <img src="Assests/Icons light/Delete icon.svg" alt="">
+                                </button>
+                            </span>
+                            <span class="cell-chevron"><img src="Assests/Icons light/Drop down icon.svg"
+                                    data-light="Assests/Icons light/Drop down icon.svg"
+                                    data-dark="Assests/Icons dark/Drop down icon.svg" alt=""></span>
+                        </li>
 
-    <li class="transaction-row" data-transaction-keyword="Dinner" data-category="food"
-        data-type="expense" data-date="2024-05-21">
-        <span class="cell-icon"><img src="Assests/Icons light/food.svg" alt=""></span>
-        <span class="cell-date">
-            <span class="date-main">May 21, 2024</span>
-            <span class="date-sub">09:10 PM</span>
-        </span>
-        <span class="cell-desc">
-            <span class="desc-title">Dinner</span>
-            <span class="desc-sub">Restaurant</span>
-        </span>
-        <span class="cell-category"><span class="pill pill-red">Food</span></span>
-        <span class="cell-type type-expense">Expense</span>
-        <span class="cell-amount amount-expense">-$29.50</span>
-        <span class="cell-actions">
-            <button class="icon-btn delete-btn" aria-label="Delete">
-                <img src="Assests/Icons light/Delete icon.svg" alt="">
-            </button>
-        </span>
-        <span class="cell-chevron"><img src="Assests/Icons light/Drop down icon.svg"
-                data-light="Assests/Icons light/Drop down icon.svg"
-                data-dark="Assests/Icons dark/Drop down icon.svg" alt=""></span>
-    </li>
+                        <li class="transaction-row" data-transaction-keyword="Bonus" data-category="salary"
+                            data-type="income" data-date="2026-09-28">
+                            <span class="cell-icon"><img src="Assests/Icons light/wallet-icon.svg" alt=""></span>
+                            <span class="cell-date">
+                                <span class="date-main">Sep 28, 2026</span>
+                                <span class="date-sub">03:45 PM</span>
+                            </span>
+                            <span class="cell-desc">
+                                <span class="desc-title">Bonus</span>
+                                <span class="desc-sub">Quarterly bonus</span>
+                            </span>
+                            <span class="cell-category"><span class="pill pill-green">Salary</span></span>
+                            <span class="cell-type type-income">Income</span>
+                            <span class="cell-amount amount-income">+$600.00</span>
+                            <span class="cell-actions">
+                                <button class="icon-btn delete-btn" aria-label="Delete">
+                                    <img src="Assests/Icons light/Delete icon.svg" alt="">
+                                </button>
+                            </span>
+                            <span class="cell-chevron"><img src="Assests/Icons light/Drop down icon.svg"
+                                    data-light="Assests/Icons light/Drop down icon.svg"
+                                    data-dark="Assests/Icons dark/Drop down icon.svg" alt=""></span>
+                        </li>
 
-    <li class="transaction-row" data-transaction-keyword="Education" data-category="education"
-        data-type="expense" data-date="2024-05-21">
-        <span class="cell-icon"><img src="Assests/Icons light/education.svg" alt=""></span>
-        <span class="cell-date">
-            <span class="date-main">May 21, 2024</span>
-            <span class="date-sub">04:50 PM</span>
-        </span>
-        <span class="cell-desc">
-            <span class="desc-title">Online Course</span>
-            <span class="desc-sub">JavaScript Course</span>
-        </span>
-        <span class="cell-category"><span class="pill pill-blue">Education</span></span>
-        <span class="cell-type type-expense">Expense</span>
-        <span class="cell-amount amount-expense">-$49.00</span>
-        <span class="cell-actions">
-            <button class="icon-btn delete-btn" aria-label="Delete">
-                <img src="Assests/Icons light/Delete icon.svg" alt="">
-            </button>
-        </span>
-        <span class="cell-chevron"><img src="Assests/Icons light/Drop down icon.svg"
-                data-light="Assests/Icons light/Drop down icon.svg"
-                data-dark="Assests/Icons dark/Drop down icon.svg" alt=""></span>
-    </li>
+                        <!-- ================= LAST MONTH (August 2026) ================= -->
 
-    <li class="transaction-row" data-transaction-keyword="Coffee" data-category="food"
-        data-type="expense" data-date="2024-05-18">
-        <span class="cell-icon"><img src="Assests/Icons light/food.svg" alt=""></span>
-        <span class="cell-date">
-            <span class="date-main">May 18, 2024</span>
-            <span class="date-sub">08:15 AM</span>
-        </span>
-        <span class="cell-desc">
-            <span class="desc-title">Coffee</span>
-            <span class="desc-sub">Starbucks</span>
-        </span>
-        <span class="cell-category"><span class="pill pill-red">Food</span></span>
-        <span class="cell-type type-expense">Expense</span>
-        <span class="cell-amount amount-expense">-$8.75</span>
-        <span class="cell-actions">
-            <button class="icon-btn delete-btn" aria-label="Delete">
-                <img src="Assests/Icons light/Delete icon.svg" alt="">
-            </button>
-        </span>
-        <span class="cell-chevron"><img src="Assests/Icons light/Drop down icon.svg"
-                data-light="Assests/Icons light/Drop down icon.svg"
-                data-dark="Assests/Icons dark/Drop down icon.svg" alt=""></span>
-    </li>
+                        <li class="transaction-row" data-transaction-keyword="Electricity Bill" data-category="bills"
+                            data-type="expense" data-date="2026-08-22">
+                            <span class="cell-icon"><img src="Assests/Icons light/electricity-bill.svg" alt=""></span>
+                            <span class="cell-date">
+                                <span class="date-main">Aug 22, 2026</span>
+                                <span class="date-sub">11:30 AM</span>
+                            </span>
+                            <span class="cell-desc">
+                                <span class="desc-title">Electricity Bill</span>
+                                <span class="desc-sub">Home electricity</span>
+                            </span>
+                            <span class="cell-category"><span class="pill pill-indigo">Bills</span></span>
+                            <span class="cell-type type-expense">Expense</span>
+                            <span class="cell-amount amount-expense">-$60.00</span>
+                            <span class="cell-actions">
+                                <button class="icon-btn delete-btn" aria-label="Delete">
+                                    <img src="Assests/Icons light/Delete icon.svg" alt="">
+                                </button>
+                            </span>
+                            <span class="cell-chevron"><img src="Assests/Icons light/Drop down icon.svg"
+                                    data-light="Assests/Icons light/Drop down icon.svg"
+                                    data-dark="Assests/Icons dark/Drop down icon.svg" alt=""></span>
+                        </li>
 
-    <li class="transaction-row" data-transaction-keyword="Dividends" data-category="investment"
-        data-type="income" data-date="2024-05-15">
-        <span class="cell-icon"><img src="Assests/Icons light/wallet-icon.svg" alt=""></span>
-        <span class="cell-date">
-            <span class="date-main">May 15, 2024</span>
-            <span class="date-sub">01:00 PM</span>
-        </span>
-        <span class="cell-desc">
-            <span class="desc-title">Dividends</span>
-            <span class="desc-sub">Stock payout</span>
-        </span>
-        <span class="cell-category"><span class="pill pill-green">Investment</span></span>
-        <span class="cell-type type-income">Income</span>
-        <span class="cell-amount amount-income">+$112.30</span>
-        <span class="cell-actions">
-            <button class="icon-btn delete-btn" aria-label="Delete">
-                <img src="Assests/Icons light/Delete icon.svg" alt="">
-            </button>
-        </span>
-        <span class="cell-chevron"><img src="Assests/Icons light/Drop down icon.svg"
-                data-light="Assests/Icons light/Drop down icon.svg"
-                data-dark="Assests/Icons dark/Drop down icon.svg" alt=""></span>
-    </li>
+                        <li class="transaction-row" data-transaction-keyword="Dinner" data-category="food"
+                            data-type="expense" data-date="2026-08-10">
+                            <span class="cell-icon"><img src="Assests/Icons light/food.svg" alt=""></span>
+                            <span class="cell-date">
+                                <span class="date-main">Aug 10, 2026</span>
+                                <span class="date-sub">09:10 PM</span>
+                            </span>
+                            <span class="cell-desc">
+                                <span class="desc-title">Dinner</span>
+                                <span class="desc-sub">Restaurant</span>
+                            </span>
+                            <span class="cell-category"><span class="pill pill-red">Food</span></span>
+                            <span class="cell-type type-expense">Expense</span>
+                            <span class="cell-amount amount-expense">-$29.50</span>
+                            <span class="cell-actions">
+                                <button class="icon-btn delete-btn" aria-label="Delete">
+                                    <img src="Assests/Icons light/Delete icon.svg" alt="">
+                                </button>
+                            </span>
+                            <span class="cell-chevron"><img src="Assests/Icons light/Drop down icon.svg"
+                                    data-light="Assests/Icons light/Drop down icon.svg"
+                                    data-dark="Assests/Icons dark/Drop down icon.svg" alt=""></span>
+                        </li>
 
-    <li class="transaction-row" data-transaction-keyword="Internet Bill" data-category="bills"
-        data-type="expense" data-date="2024-05-10">
-        <span class="cell-icon"><img src="Assests/Icons light/electricity-bill.svg" alt=""></span>
-        <span class="cell-date">
-            <span class="date-main">May 10, 2024</span>
-            <span class="date-sub">06:30 PM</span>
-        </span>
-        <span class="cell-desc">
-            <span class="desc-title">Internet Bill</span>
-            <span class="desc-sub">Fiber optic plan</span>
-        </span>
-        <span class="cell-category"><span class="pill pill-indigo">Bills</span></span>
-        <span class="cell-type type-expense">Expense</span>
-        <span class="cell-amount amount-expense">-$45.00</span>
-        <span class="cell-actions">
-            <button class="icon-btn delete-btn" aria-label="Delete">
-                <img src="Assests/Icons light/Delete icon.svg" alt="">
-            </button>
-        </span>
-        <span class="cell-chevron"><img src="Assests/Icons light/Drop down icon.svg"
-                data-light="Assests/Icons light/Drop down icon.svg"
-                data-dark="Assests/Icons dark/Drop down icon.svg" alt=""></span>
-    </li>
+                        <!-- ========== EARLIER THIS YEAR, BEFORE LAST MONTH (Feb–Jul 2026) ========== -->
 
-    <li class="transaction-row" data-transaction-keyword="Bonus" data-category="salary"
-        data-type="income" data-date="2026-09-28">
-        <span class="cell-icon"><img src="Assests/Icons light/wallet-icon.svg" alt=""></span>
-        <span class="cell-date">
-            <span class="date-main">Apr 28, 2024</span>
-            <span class="date-sub">03:45 PM</span>
-        </span>
-        <span class="cell-desc">
-            <span class="desc-title">Bonus</span>
-            <span class="desc-sub">Quarterly bonus</span>
-        </span>
-        <span class="cell-category"><span class="pill pill-green">Salary</span></span>
-        <span class="cell-type type-income">Income</span>
-        <span class="cell-amount amount-income">+$600.00</span>
-        <span class="cell-actions">
-            <button class="icon-btn delete-btn" aria-label="Delete">
-                <img src="Assests/Icons light/Delete icon.svg" alt="">
-            </button>
-        </span>
-        <span class="cell-chevron"><img src="Assests/Icons light/Drop down icon.svg"
-                data-light="Assests/Icons light/Drop down icon.svg"
-                data-dark="Assests/Icons dark/Drop down icon.svg" alt=""></span>
-    </li>
+                        <li class="transaction-row" data-transaction-keyword="Education" data-category="education"
+                            data-type="expense" data-date="2026-06-21">
+                            <span class="cell-icon"><img src="Assests/Icons light/education.svg" alt=""></span>
+                            <span class="cell-date">
+                                <span class="date-main">Jun 21, 2026</span>
+                                <span class="date-sub">04:50 PM</span>
+                            </span>
+                            <span class="cell-desc">
+                                <span class="desc-title">Online Course</span>
+                                <span class="desc-sub">JavaScript Course</span>
+                            </span>
+                            <span class="cell-category"><span class="pill pill-blue">Education</span></span>
+                            <span class="cell-type type-expense">Expense</span>
+                            <span class="cell-amount amount-expense">-$49.00</span>
+                            <span class="cell-actions">
+                                <button class="icon-btn delete-btn" aria-label="Delete">
+                                    <img src="Assests/Icons light/Delete icon.svg" alt="">
+                                </button>
+                            </span>
+                            <span class="cell-chevron"><img src="Assests/Icons light/Drop down icon.svg"
+                                    data-light="Assests/Icons light/Drop down icon.svg"
+                                    data-dark="Assests/Icons dark/Drop down icon.svg" alt=""></span>
+                        </li>
 
-</ul>
+                        <li class="transaction-row" data-transaction-keyword="Coffee" data-category="food"
+                            data-type="expense" data-date="2026-03-18">
+                            <span class="cell-icon"><img src="Assests/Icons light/food.svg" alt=""></span>
+                            <span class="cell-date">
+                                <span class="date-main">Mar 18, 2026</span>
+                                <span class="date-sub">08:15 AM</span>
+                            </span>
+                            <span class="cell-desc">
+                                <span class="desc-title">Coffee</span>
+                                <span class="desc-sub">Starbucks</span>
+                            </span>
+                            <span class="cell-category"><span class="pill pill-red">Food</span></span>
+                            <span class="cell-type type-expense">Expense</span>
+                            <span class="cell-amount amount-expense">-$8.75</span>
+                            <span class="cell-actions">
+                                <button class="icon-btn delete-btn" aria-label="Delete">
+                                    <img src="Assests/Icons light/Delete icon.svg" alt="">
+                                </button>
+                            </span>
+                            <span class="cell-chevron"><img src="Assests/Icons light/Drop down icon.svg"
+                                    data-light="Assests/Icons light/Drop down icon.svg"
+                                    data-dark="Assests/Icons dark/Drop down icon.svg" alt=""></span>
+                        </li>
+
+                        <!-- ================= BEFORE THIS YEAR (2023–2025) ================= -->
+
+                        <li class="transaction-row" data-transaction-keyword="Dividends" data-category="investment"
+                            data-type="income" data-date="2025-11-15">
+                            <span class="cell-icon"><img src="Assests/Icons light/wallet-icon.svg" alt=""></span>
+                            <span class="cell-date">
+                                <span class="date-main">Nov 15, 2025</span>
+                                <span class="date-sub">01:00 PM</span>
+                            </span>
+                            <span class="cell-desc">
+                                <span class="desc-title">Dividends</span>
+                                <span class="desc-sub">Stock payout</span>
+                            </span>
+                            <span class="cell-category"><span class="pill pill-green">Investment</span></span>
+                            <span class="cell-type type-income">Income</span>
+                            <span class="cell-amount amount-income">+$112.30</span>
+                            <span class="cell-actions">
+                                <button class="icon-btn delete-btn" aria-label="Delete">
+                                    <img src="Assests/Icons light/Delete icon.svg" alt="">
+                                </button>
+                            </span>
+                            <span class="cell-chevron"><img src="Assests/Icons light/Drop down icon.svg"
+                                    data-light="Assests/Icons light/Drop down icon.svg"
+                                    data-dark="Assests/Icons dark/Drop down icon.svg" alt=""></span>
+                        </li>
+
+                        <li class="transaction-row" data-transaction-keyword="Internet Bill" data-category="bills"
+                            data-type="expense" data-date="2023-09-10">
+                            <span class="cell-icon"><img src="Assests/Icons light/electricity-bill.svg" alt=""></span>
+                            <span class="cell-date">
+                                <span class="date-main">Sep 10, 2023</span>
+                                <span class="date-sub">06:30 PM</span>
+                            </span>
+                            <span class="cell-desc">
+                                <span class="desc-title">Internet Bill</span>
+                                <span class="desc-sub">Fiber optic plan</span>
+                            </span>
+                            <span class="cell-category"><span class="pill pill-indigo">Bills</span></span>
+                            <span class="cell-type type-expense">Expense</span>
+                            <span class="cell-amount amount-expense">-$45.00</span>
+                            <span class="cell-actions">
+                                <button class="icon-btn delete-btn" aria-label="Delete">
+                                    <img src="Assests/Icons light/Delete icon.svg" alt="">
+                                </button>
+                            </span>
+                            <span class="cell-chevron"><img src="Assests/Icons light/Drop down icon.svg"
+                                    data-light="Assests/Icons light/Drop down icon.svg"
+                                    data-dark="Assests/Icons dark/Drop down icon.svg" alt=""></span>
+                        </li>
+
+                    </ul>
                 </div>
             </div>
 
@@ -573,8 +606,7 @@
                         <h1 class="Tab-heading">Categories</h1>
                         <p class="tab-para">Manage your income and expense categories.</p>
                     </div>
-                    <button class="addTransactions-btn addCategory-btn"><img src="Assests/Icons dark/Add icon.svg"
-                            alt="">Add Category</button>
+
                 </header>
 
                 <div class="table-card">
@@ -872,7 +904,7 @@
         </button>
     </nav>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
     <script src="Assests/JavaScript/script.js"></script>
 </body>
 

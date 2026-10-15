@@ -7,6 +7,12 @@
   --color-bg-surface: #ffffff;
   --color-bg-card: #ffffff;
   --color-btn-blue-text: #ffff;
+  
+  --toast-bg: #ffffff;
+  --toast-border: #e2e8f0;
+  --toast-accent: #16a34a;
+  --toast-text: #172033;
+  --toast-shadow: 0 8px 24px rgba(15, 23, 42, 0.10);
 
   /* Text */
   --color-text-primary: #172033;
@@ -107,6 +113,10 @@
   --color-primary-hover: #70a5ff;
   --color-primary-light: #172b4d;
 
+  --toast-bg: #1b2430;
+  --toast-border: #2a3746;
+  --toast-text: #f1f5f9;
+  --toast-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
   /* Hover */
   --hover-color: #202b39;
 
