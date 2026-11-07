@@ -24,6 +24,112 @@ theme_Change_BTN.forEach(btn => {
         svgInvert(newTheme);
     });
 });
+
+// If no profile found then popup will appear
+const existingProfile = localStorage.getItem('profile-data');
+if (!existingProfile) {
+    // ===================== AUTH POPUP HTML =====================
+    const authOverlay = document.createElement('div');
+    authOverlay.classList.add('auth-overlay', 'is-open');
+    authOverlay.id = 'authOverlay';
+    authOverlay.setAttribute('role', 'dialog');
+    authOverlay.setAttribute('aria-modal', 'true');
+    authOverlay.setAttribute('aria-labelledby', 'authTitle');
+    authOverlay.innerHTML = `
+        <div class="auth-popup">
+            <div class="auth-popup-brand">
+                <img src="Assests/images/Logo.png" alt="" class="auth-popup-logo">
+                <span>Expense Tracker</span>
+            </div>
+            <h2 class="auth-popup-title" id="authTitle">Sign in to continue</h2>
+            <p class="auth-popup-sub">No account was found in this browser. Create one to keep using the app. Everything stays in localStorage.</p>
+
+            <form class="auth-popup-form" id="signupForm" novalidate>
+                <div class="profile-grid">
+                    <div class="profile-field">
+                        <label for="signupName">Full name</label>
+                        <input type="text" class="profile-input" id="signupName" name="name"
+                            placeholder="e.g. Ali Khan" autocomplete="name" required>
+                        <small class="field-error" id="signupNameError">Please enter your name.</small>
+                    </div>
+
+                    <div class="profile-field">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" class="profile-input" id="signupEmail" name="email"
+                            placeholder="you@example.com" autocomplete="email" required>
+                        <small class="field-error" id="signupEmailError">Please enter a valid email.</small>
+                    </div>
+
+                    <div class="profile-field">
+                        <label for="signupPhone">Phone <span class="profile-optional">(optional)</span></label>
+                        <input type="tel" class="profile-input" id="signupPhone" name="phone"
+                            placeholder="+92 300 1234567" autocomplete="tel">
+                    </div>
+
+                    <div class="profile-field">
+                        <label for="signupCountry">Country</label>
+                        <label class="select-filter">
+                            <select class="filter-select" id="signupCountry" name="country">
+                                <option value="">Select country</option>
+                                <option value="Pakistan">Pakistan</option>
+                                <option value="United States">United States</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                                <option value="India">India</option>
+                                <option value="United Arab Emirates">United Arab Emirates</option>
+                                <option value="Saudi Arabia">Saudi Arabia</option>
+                                <option value="Canada">Canada</option>
+                                <option value="Australia">Australia</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <img class="select-chevron" src="Assests/Icons light/Drop down icon.svg"
+                                data-light="Assests/Icons light/Drop down icon.svg"
+                                data-dark="Assests/Icons dark/Drop down icon.svg" alt="">
+                        </label>
+                    </div>
+
+                    <div class="profile-field">
+                        <label for="signupCurrency">Currency</label>
+                        <label class="select-filter">
+                            <select class="filter-select" id="signupCurrency" name="currency">
+                                <option value="USD" data-symbol="$" data-locale="en-US" selected>USD – US Dollar ($)</option>
+                                <option value="PKR" data-symbol="₨" data-locale="en-PK">PKR – Pakistani Rupee (₨)</option>
+                                <option value="EUR" data-symbol="€" data-locale="de-DE">EUR – Euro (€)</option>
+                                <option value="GBP" data-symbol="£" data-locale="en-GB">GBP – British Pound (£)</option>
+                                <option value="INR" data-symbol="₹" data-locale="en-IN">INR – Indian Rupee (₹)</option>
+                                <option value="AED" data-symbol="د.إ" data-locale="en-AE">AED – UAE Dirham (د.إ)</option>
+                                <option value="SAR" data-symbol="﷼" data-locale="en-SA">SAR – Saudi Riyal (﷼)</option>
+                                <option value="CAD" data-symbol="$" data-locale="en-CA">CAD – Canadian Dollar ($)</option>
+                                <option value="AUD" data-symbol="$" data-locale="en-AU">AUD – Australian Dollar ($)</option>
+                                <option value="JPY" data-symbol="¥" data-locale="ja-JP">JPY – Japanese Yen (¥)</option>
+                            </select>
+                            <img class="select-chevron" src="Assests/Icons light/Drop down icon.svg"
+                                data-light="Assests/Icons light/Drop down icon.svg"
+                                data-dark="Assests/Icons dark/Drop down icon.svg" alt="">
+                        </label>
+                        
+                    </div>
+
+                    <div class="profile-field">
+                        <label for="signupBudget">Monthly budget <span class="profile-optional">(optional)</span></label>
+                        <div class="input-prefix">
+                            <input type="number" class="profile-input" id="signupBudget" name="budget"
+                                min="0" step="0.01" placeholder="0.00" inputmode="decimal">
+                        </div>
+                        <small class="field-error" id="signupBudgetError">Budget can't be negative.</small>
+                    </div>
+                </div>
+
+                <button  class="profile-btn profile-btn-primary auth-popup-submit" id="signupSubmitBtn">
+                    Create account
+                </button>
+            </form>
+        </div>
+`;
+    document.body.appendChild(authOverlay);
+}
+// ===================== END AUTH POPUP =====================
+
+
 // Toast
 // ShowToast functionality
 const ShowToast = (Heading, Text, Type) => {
@@ -112,6 +218,9 @@ document.body.addEventListener('click', function (e) {
     }
     if (e.target.closest('.cross-btn-transaction')) {
         cross_T()
+    }
+    if (e.target.closest('#signupSubmitBtn')) {
+        Signup();
     }
 });
 document.body.addEventListener('change', function (e) {
@@ -281,7 +390,7 @@ function Chart_integrate(data_expense) {
         }
     });
 }
-Chart_integrate(ExpenseData);
+//Chart_integrate(ExpenseData);
 
 
 // Searchbar
@@ -379,7 +488,7 @@ filter_btn_dashboard.addEventListener('change', function () {
     if (existingChart) {
         existingChart.destroy();
     }
-    Chart_integrate(Designated_data);
+    //Chart_integrate(Designated_data);
     // UI values change
     const container_info = document.querySelector('.right-expense-detail-by-category');
     container_info.innerHTML = ''
@@ -583,3 +692,29 @@ function confirmTransaction() {
 Object.entries(ExpenseData).forEach(([category, data]) => {
 
 });
+
+function Signup() {
+    const name = document.querySelector('#signupName').value;
+    const email = document.querySelector('#signupEmail').value;
+    const phone = document.querySelector('#signupPhone').value;
+    const country = document.querySelector('#signupCountry').value;
+    const currency = document.querySelector('#signupCurrency').value;
+    const budget = document.querySelector('#signupBudget').value;
+    if(!name && !email && !country && !currency){
+        ShowToast('Invalid info', 'Please make sure all values are entered.', 'error');
+    }
+    
+    const profileData = {
+        profile: {
+            name: name,
+            email: email,
+            country: country,
+            currency: currency,
+            phone: 'none',
+            budget: 'none',
+        }
+    }
+    if(phone) profileData.profile.phone = phone;
+    if(budget) profileData.profile.budget = budget;
+    document.body.querySelector('#authOverlay').remove();
+}/*  */

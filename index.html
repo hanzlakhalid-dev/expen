@@ -8,6 +8,7 @@
     <script src="Assests/JavaScript/theme-init.js"></script>
     <link rel="stylesheet" href="Assests/CSS/style.css">
     <link rel="stylesheet" href="Assests/CSS/utility.css">
+    <link rel="stylesheet" href="Assests/CSS/profile.css">
     <link rel="stylesheet" href="Assests/CSS/media.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,6 +62,11 @@
                     <img src="Assests/Icons dark/Category Tab.svg" data-dark="Assests/Icons dark/Category Tab.svg"
                         data-light="Assests/Icons light/Category Tab.svg" alt="" class="tab-img">
                     <span class="tab-label">Categories</span>
+                </button>
+                <button data-tab="Profile Tab" class="tab" data-section="profile">
+                    <img src="Assests/Icons dark/Profile Tab.svg" data-dark="Assests/Icons dark/Profile Tab.svg"
+                        data-light="Assests/Icons light/Profile Tab.svg" alt="" class="tab-img">
+                    <span class="tab-label">Profile</span>
                 </button>
             </div>
 
@@ -879,6 +885,161 @@
                 </div>
             </div>
 
+            <!-- ------------------ PROFILE ------------------ -->
+            <div class="profile">
+                <header class="header-right">
+                    <div class="right-header">
+                        <h1 class="Tab-heading">Profile</h1>
+                        <p class="tab-para">Manage your personal details and preferences.</p>
+                    </div>
+                </header>
+
+                <div class="profile-layout">
+
+                    <!-- Summary card -->
+                    <aside class="profile-summary">
+                        <div class="profile-avatar">
+                            <img class="profile-avatar-img" id="profileAvatarImg" alt="Profile photo" hidden>
+                            <span class="profile-avatar-initials" id="profileAvatarInitials">U</span>
+                        </div>
+
+                        <h2 class="profile-display-name" id="profileDisplayName">Your Name</h2>
+                        <p class="profile-display-email" id="profileDisplayEmail">you@example.com</p>
+
+                        <div class="profile-avatar-actions">
+                            <label for="profilePhoto" class="profile-btn profile-btn-secondary">Upload photo</label>
+                            <input type="file" id="profilePhoto" accept="image/*" hidden>
+                            <button type="button" class="profile-btn profile-btn-ghost" id="removePhotoBtn">Remove</button>
+                        </div>
+
+                        <dl class="profile-summary-list">
+                            <div class="profile-summary-row">
+                                <dt>Currency</dt>
+                                <dd id="summaryCurrency">USD ($)</dd>
+                            </div>
+                            <div class="profile-summary-row">
+                                <dt>Monthly budget</dt>
+                                <dd id="summaryBudget">$0.00</dd>
+                            </div>
+                            <div class="profile-summary-row">
+                                <dt>Country</dt>
+                                <dd id="summaryCountry">Not set</dd>
+                            </div>
+                        </dl>
+                    </aside>
+
+                    <!-- Form -->
+                    <form class="profile-form" id="profileForm" novalidate>
+
+                        <!-- Personal information -->
+                        <section class="profile-card">
+                            <h2 class="profile-card-title">Personal Information</h2>
+                            <p class="profile-card-sub">This is only stored in your browser.</p>
+
+                            <div class="profile-grid">
+                                <div class="profile-field">
+                                    <label for="profileName">Full name</label>
+                                    <input type="text" class="profile-input" id="profileName" name="name"
+                                        placeholder="e.g. Ali Khan" autocomplete="name" required>
+                                    <small class="field-error" id="profileNameError">Please enter your name.</small>
+                                </div>
+
+                                <div class="profile-field">
+                                    <label for="profileEmail">Email</label>
+                                    <input type="email" class="profile-input" id="profileEmail" name="email"
+                                        placeholder="you@example.com" autocomplete="email" required>
+                                    <small class="field-error" id="profileEmailError">Please enter a valid email.</small>
+                                </div>
+
+                                <div class="profile-field">
+                                    <label for="profilePhone">Phone <span class="profile-optional">(optional)</span></label>
+                                    <input type="tel" class="profile-input" id="profilePhone" name="phone"
+                                        placeholder="+92 300 1234567" autocomplete="tel">
+                                </div>
+
+                                <div class="profile-field">
+                                    <label for="profileCountry">Country</label>
+                                    <label class="select-filter">
+                                        <select class="filter-select" id="profileCountry" name="country">
+                                            <option value="">Select country</option>
+                                            <option value="Pakistan">Pakistan</option>
+                                            <option value="United States">United States</option>
+                                            <option value="United Kingdom">United Kingdom</option>
+                                            <option value="India">India</option>
+                                            <option value="United Arab Emirates">United Arab Emirates</option>
+                                            <option value="Saudi Arabia">Saudi Arabia</option>
+                                            <option value="Canada">Canada</option>
+                                            <option value="Australia">Australia</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                        <img class="select-chevron" src="Assests/Icons light/Drop down icon.svg"
+                                    data-light="Assests/Icons light/Drop down icon.svg"
+                                    data-dark="Assests/Icons dark/Drop down icon.svg" alt="">
+                                    </label>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Preferences -->
+                        <section class="profile-card">
+                            <h2 class="profile-card-title">Preferences</h2>
+                            <p class="profile-card-sub">Choose how money is shown across the app.</p>
+
+                            <div class="profile-grid">
+                                <div class="profile-field">
+                                    <label for="profileCurrency">Currency</label>
+                                    <label class="select-filter">
+                                        <select class="filter-select" id="profileCurrency" name="currency">
+                                            <option value="USD" data-symbol="$" data-locale="en-US" selected>USD – US Dollar ($)</option>
+                                            <option value="PKR" data-symbol="₨" data-locale="en-PK">PKR – Pakistani Rupee (₨)</option>
+                                            <option value="EUR" data-symbol="€" data-locale="de-DE">EUR – Euro (€)</option>
+                                            <option value="GBP" data-symbol="£" data-locale="en-GB">GBP – British Pound (£)</option>
+                                            <option value="INR" data-symbol="₹" data-locale="en-IN">INR – Indian Rupee (₹)</option>
+                                            <option value="AED" data-symbol="د.إ" data-locale="en-AE">AED – UAE Dirham (د.إ)</option>
+                                            <option value="SAR" data-symbol="﷼" data-locale="en-SA">SAR – Saudi Riyal (﷼)</option>
+                                            <option value="CAD" data-symbol="$" data-locale="en-CA">CAD – Canadian Dollar ($)</option>
+                                            <option value="AUD" data-symbol="$" data-locale="en-AU">AUD – Australian Dollar ($)</option>
+                                            <option value="JPY" data-symbol="¥" data-locale="ja-JP">JPY – Japanese Yen (¥)</option>
+                                        </select>
+                                        <img class="select-chevron" src="Assests/Icons light/Drop down icon.svg"
+                                    data-light="Assests/Icons light/Drop down icon.svg"
+                                    data-dark="Assests/Icons dark/Drop down icon.svg" alt="">
+                                    </label>
+                                    <small class="profile-hint">Preview: <strong id="currencyPreview">$1,234.56</strong></small>
+                                </div>
+
+                                <div class="profile-field">
+                                    <label for="profileBudget">Monthly budget <span class="profile-optional">(optional)</span></label>
+                                    <div class="input-prefix">
+                                        <span class="input-prefix-symbol" id="budgetSymbol">$</span>
+                                        <input type="number" class="profile-input" id="profileBudget" name="budget"
+                                            min="0" step="0.01" placeholder="0.00" inputmode="decimal">
+                                    </div>
+                                    <small class="field-error" id="profileBudgetError">Budget can't be negative.</small>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Data -->
+                        <section class="profile-card">
+                            <h2 class="profile-card-title">Data</h2>
+                            <p class="profile-card-sub">Everything is saved in this browser using localStorage. Clearing it can't be undone.</p>
+
+                            <div class="profile-data-actions">
+                                <button type="button" class="profile-btn profile-btn-ghost" id="resetProfileBtn">Reset profile</button>
+                                <button type="button" class="profile-btn profile-btn-danger" id="clearAllDataBtn">Clear all app data</button>
+                            </div>
+                        </section>
+
+                        <!-- Save bar -->
+                        <div class="profile-form-actions">
+                            <button type="button" class="profile-btn profile-btn-ghost" id="discardProfileBtn">Discard changes</button>
+                            <button type="submit" class="profile-btn profile-btn-primary" id="saveProfileBtn">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -902,8 +1063,15 @@
                     alt="" class="tab-img"></span>
             <span class="tab-label">Categories</span>
         </button>
+        <button data-tab="Profile Tab" data-section="profile" class="tab">
+            <span class="nav-icon-box"><img src="Assests/Icons dark/Profile Tab.svg"
+                    data-dark="Assests/Icons dark/Profile Tab.svg" data-light="Assests/Icons light/Profile Tab.svg"
+                    alt="" class="tab-img"></span>
+            <span class="tab-label">Profile</span>
+        </button>
     </nav>
 
+    
  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
     <script src="Assests/JavaScript/script.js"></script>
 </body>
