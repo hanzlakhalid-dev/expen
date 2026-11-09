@@ -26,7 +26,7 @@ theme_Change_BTN.forEach(btn => {
 });
 
 // If no profile found then popup will appear
-const existingProfile = localStorage.getItem('profile-data');
+const existingProfile = localStorage.getItem('profileData');
 if (!existingProfile) {
     // ===================== AUTH POPUP HTML =====================
     const authOverlay = document.createElement('div');
@@ -119,7 +119,7 @@ if (!existingProfile) {
                     </div>
                 </div>
 
-                <button  class="profile-btn profile-btn-primary auth-popup-submit" id="signupSubmitBtn">
+                <button type="button" class="profile-btn profile-btn-primary auth-popup-submit" id="signupSubmitBtn">
                     Create account
                 </button>
             </form>
@@ -220,6 +220,7 @@ document.body.addEventListener('click', function (e) {
         cross_T()
     }
     if (e.target.closest('#signupSubmitBtn')) {
+        e.preventDefault();
         Signup();
     }
 });
@@ -686,7 +687,6 @@ function confirmTransaction() {
     }
 }
 //NOTE: The System : Add Transaction > Transactions && Categories update > LocatStorage > UI
-//TODO: Prompt user account settings if no localstorage data of profile is found,
 //TODO: remove and stick to one categorie model, stick to one data
 
 Object.entries(ExpenseData).forEach(([category, data]) => {
@@ -700,10 +700,11 @@ function Signup() {
     const country = document.querySelector('#signupCountry').value;
     const currency = document.querySelector('#signupCurrency').value;
     const budget = document.querySelector('#signupBudget').value;
-    if(!name && !email && !country && !currency){
-        ShowToast('Invalid info', 'Please make sure all values are entered.', 'error');
+    if (!name || !email || !country || !currency) {
+        ShowToast('Invalid info', 'Please enter all required fields.', 'error');
+        return;
     }
-    
+   // Set values
     const profileData = {
         profile: {
             name: name,
@@ -714,7 +715,37 @@ function Signup() {
             budget: 'none',
         }
     }
-    if(phone) profileData.profile.phone = phone;
-    if(budget) profileData.profile.budget = budget;
+    if (phone) profileData.profile.phone = phone;
+    if (budget) profileData.profile.budget = budget;
+    console.log(profileData);
+     //Set localstorage
+     localStorage.setItem('profileData', JSON.stringify(profileData));
+    // remove overlay
     document.body.querySelector('#authOverlay').remove();
-}/*  */
+    // Update profile tab
+     //get html 
+    const display_name = document.querySelector('#profileDisplayName');
+    const display_email = document.querySelector('#profileDisplayEmail');
+    const display_currency = document.querySelector('#summaryCurrency');
+    const display_country = document.querySelector('#summaryCountry');
+    const display_name_input = document.querySelector('#profileName');
+    const display_email_input = document.querySelector('#profileEmail');
+    const display_country_input = document.querySelector('#profileCountry');
+    const display_currency_input = document.querySelector('#profileCurrency');
+     // assign values
+     display_name.textContent = name;
+     display_email.textContent = email;
+     display_currency.textContent = currency;
+     display_country.textContent = country;
+     display_name_input.value = name;
+     display_email_input.value = email;
+     display_country_input.value = country;
+     display_currency_input.value = currency;
+     if(phone){
+        document.querySelector('#profilePhone').value = phone;
+     }
+     if(budget){
+        document.querySelector('#profileBudget').value = budget;
+        document.querySelector('#summaryBudget').textContent = budget;
+     }
+}
