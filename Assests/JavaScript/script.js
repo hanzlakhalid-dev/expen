@@ -45,7 +45,7 @@ if(existingProfile){
      display_email.textContent = data.email;
      display_currency.textContent = data.currency;
      display_country.textContent = data.country;
-     display_name_input.value = display_country.name;
+     display_name_input.value = data.name;
      display_email_input.value = data.email;
      display_country_input.value = data.country;
      display_currency_input.value = data.currency;
@@ -780,4 +780,20 @@ function Signup() {
         document.querySelector('#summaryBudget').textContent = budget;
      }
 }
-//
+
+// -------Profile tab editing
+
+// Event listner
+document.addEventListener('change',function(e){
+    if(e.target.closest('.filter-profile') || e.target.closest('.profile-input')){
+        const changes_alter_btn = document.querySelector('.profile-form-actions');
+       if(changes_alter_btn.classList.contains('hidden')){
+        changes_alter_btn.classList.add('flex');
+        changes_alter_btn.classList.remove('hidden');
+       }
+    }
+})
+// function
+function ProfileEdit() {
+
+}

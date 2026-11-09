@@ -954,7 +954,7 @@
                                 <div class="profile-field">
                                     <label for="profileCountry">Country</label>
                                     <label class="select-filter">
-                                        <select class="filter-select" id="profileCountry" name="country">
+                                        <select class="filter-select filter-profile" id="profileCountry" name="country">
                                             <option value="">Select country</option>
                                             <option value="Pakistan">Pakistan</option>
                                             <option value="United States">United States</option>
@@ -983,7 +983,7 @@
                                 <div class="profile-field">
                                     <label for="profileCurrency">Currency</label>
                                     <label class="select-filter">
-                                        <select class="filter-select" id="profileCurrency" name="currency">
+                                        <select class="filter-select filter-profile" id="profileCurrency" name="currency">
                                             <option value="USD" data-symbol="$" data-locale="en-US" selected>USD – US Dollar ($)</option>
                                             <option value="PKR" data-symbol="₨" data-locale="en-PK">PKR – Pakistani Rupee (₨)</option>
                                             <option value="EUR" data-symbol="€" data-locale="de-DE">EUR – Euro (€)</option>
@@ -1020,13 +1020,13 @@
                             <p class="profile-card-sub">Everything is saved in this browser using localStorage. Clearing it can't be undone.</p>
 
                             <div class="profile-data-actions">
-                                <button type="button" class="profile-btn profile-btn-ghost" id="resetProfileBtn">Reset profile</button>
+                                
                                 <button type="button" class="profile-btn profile-btn-danger" id="clearAllDataBtn">Clear all app data</button>
                             </div>
                         </section>
 
                         <!-- Save bar -->
-                        <div class="profile-form-actions">
+                        <div class="profile-form-actions hidden">
                             <button type="button" class="profile-btn profile-btn-ghost" id="discardProfileBtn">Discard changes</button>
                             <button type="submit" class="profile-btn profile-btn-primary" id="saveProfileBtn">Save changes</button>
                         </div>
