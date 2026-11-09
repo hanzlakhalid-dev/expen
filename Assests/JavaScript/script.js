@@ -391,7 +391,7 @@ function Chart_integrate(data_expense) {
         }
     });
 }
-//Chart_integrate(ExpenseData);
+Chart_integrate(ExpenseData);
 
 
 // Searchbar
@@ -687,8 +687,6 @@ function confirmTransaction() {
     }
 }
 //NOTE: The System : Add Transaction > Transactions && Categories update > LocatStorage > UI
-//TODO: remove and stick to one categorie model, stick to one data
-
 Object.entries(ExpenseData).forEach(([category, data]) => {
 
 });
@@ -732,6 +730,7 @@ function Signup() {
     const display_email_input = document.querySelector('#profileEmail');
     const display_country_input = document.querySelector('#profileCountry');
     const display_currency_input = document.querySelector('#profileCurrency');
+    const profile_icon_display = document.querySelector('#profileAvatarInitials');
      // assign values
      display_name.textContent = name;
      display_email.textContent = email;
@@ -741,6 +740,7 @@ function Signup() {
      display_email_input.value = email;
      display_country_input.value = country;
      display_currency_input.value = currency;
+     profile_icon_display.textContent = name.split('')[0];
      if(phone){
         document.querySelector('#profilePhone').value = phone;
      }
@@ -749,3 +749,4 @@ function Signup() {
         document.querySelector('#summaryBudget').textContent = budget;
      }
 }
+//
