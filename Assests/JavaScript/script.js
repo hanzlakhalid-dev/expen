@@ -27,6 +27,37 @@ theme_Change_BTN.forEach(btn => {
 
 // If no profile found then popup will appear
 const existingProfile = localStorage.getItem('profileData');
+if(existingProfile){
+    const data = (JSON.parse(existingProfile)).profile;
+    // Update profile tab
+     //get html 
+    const display_name = document.querySelector('#profileDisplayName');
+    const display_email = document.querySelector('#profileDisplayEmail');
+    const display_currency = document.querySelector('#summaryCurrency');
+    const display_country = document.querySelector('#summaryCountry');
+    const display_name_input = document.querySelector('#profileName');
+    const display_email_input = document.querySelector('#profileEmail');
+    const display_country_input = document.querySelector('#profileCountry');
+    const display_currency_input = document.querySelector('#profileCurrency');
+    const profile_icon_display = document.querySelector('#profileAvatarInitials');
+     // assign values
+     display_name.textContent = data.name;
+     display_email.textContent = data.email;
+     display_currency.textContent = data.currency;
+     display_country.textContent = data.country;
+     display_name_input.value = display_country.name;
+     display_email_input.value = data.email;
+     display_country_input.value = data.country;
+     display_currency_input.value = data.currency;
+     profile_icon_display.textContent = data.name.split('')[0];
+     if(data.phone){
+        document.querySelector('#profilePhone').value = data.phone;
+     }
+     if(data.budget){
+        document.querySelector('#profileBudget').value = data.budget;
+        document.querySelector('#summaryBudget').textContent = data.budget;
+     }
+}
 if (!existingProfile) {
     // ===================== AUTH POPUP HTML =====================
     const authOverlay = document.createElement('div');
