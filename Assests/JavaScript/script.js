@@ -255,7 +255,10 @@ document.body.addEventListener('click', function (e) {
         Signup();
     }
     if (e.target.closest('#saveProfileBtn')) {
-        ProfileEdit_Save()
+        ProfileEdit_Save();
+    }
+    if (e.target.closest('#discardProfileBtn')) {
+        ProfileEdit_Discard();
     }
 });
 document.body.addEventListener('change', function (e) {
@@ -821,5 +824,33 @@ function ProfileEdit_Save() {
     }
     //Set localstorage
     localStorage.setItem('profileData', JSON.stringify(data));
+    // hide save/ discard bar
+    const changes_alter_btn = document.querySelector('.profile-form-actions');
+    changes_alter_btn.classList.add('hidden');
+    changes_alter_btn.classList.remove('flex');
 }
 // Function for discard button
+function ProfileEdit_Discard() {
+    // get localstorage data
+    const data = JSON.parse(localStorage.getItem('profileData'));
+    // Implement it in html
+    const display_name_input = document.querySelector('#profileName');
+    const display_email_input = document.querySelector('#profileEmail');
+    const display_country_input = document.querySelector('#profileCountry');
+    const display_currency_input = document.querySelector('#profileCurrency');
+    display_name_input.value = data.profile.name;
+    display_email_input.value = data.profile.email;
+    display_country_input.value = data.profile.country;
+    display_currency_input.value = data.profile.currency;
+    // -- additional implementation with checks
+    if (data.profile.phone !== 'none') {
+        document.querySelector('#profilePhone').value = data.profile.phone;
+    }
+    if (data.profile.budget !== 'none') {
+        document.querySelector('#profileBudget').value = data.profile.budget;
+    }
+    // hide save/ discard bar
+    const changes_alter_btn = document.querySelector('.profile-form-actions');
+    changes_alter_btn.classList.add('hidden');
+    changes_alter_btn.classList.remove('flex');
+}
