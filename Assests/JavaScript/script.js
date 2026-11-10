@@ -27,10 +27,10 @@ theme_Change_BTN.forEach(btn => {
 
 // If no profile found then popup will appear
 const existingProfile = localStorage.getItem('profileData');
-if(existingProfile){
+if (existingProfile) {
     const data = (JSON.parse(existingProfile)).profile;
     // Update profile tab
-     //get html 
+    //get html 
     const display_name = document.querySelector('#profileDisplayName');
     const display_email = document.querySelector('#profileDisplayEmail');
     const display_currency = document.querySelector('#summaryCurrency');
@@ -40,23 +40,23 @@ if(existingProfile){
     const display_country_input = document.querySelector('#profileCountry');
     const display_currency_input = document.querySelector('#profileCurrency');
     const profile_icon_display = document.querySelector('#profileAvatarInitials');
-     // assign values
-     display_name.textContent = data.name;
-     display_email.textContent = data.email;
-     display_currency.textContent = data.currency;
-     display_country.textContent = data.country;
-     display_name_input.value = data.name;
-     display_email_input.value = data.email;
-     display_country_input.value = data.country;
-     display_currency_input.value = data.currency;
-     profile_icon_display.textContent = data.name.split('')[0];
-     if(data.phone){
+    // assign values
+    display_name.textContent = data.name;
+    display_email.textContent = data.email;
+    display_currency.textContent = data.currency;
+    display_country.textContent = data.country;
+    display_name_input.value = data.name;
+    display_email_input.value = data.email;
+    display_country_input.value = data.country;
+    display_currency_input.value = data.currency;
+    profile_icon_display.textContent = data.name.split('')[0];
+    if (data.phone) {
         document.querySelector('#profilePhone').value = data.phone;
-     }
-     if(data.budget){
+    }
+    if (data.budget) {
         document.querySelector('#profileBudget').value = data.budget;
         document.querySelector('#summaryBudget').textContent = data.budget;
-     }
+    }
 }
 if (!existingProfile) {
     // ===================== AUTH POPUP HTML =====================
@@ -253,6 +253,9 @@ document.body.addEventListener('click', function (e) {
     if (e.target.closest('#signupSubmitBtn')) {
         e.preventDefault();
         Signup();
+    }
+    if (e.target.closest('#saveProfileBtn')) {
+        ProfileEdit_Save()
     }
 });
 document.body.addEventListener('change', function (e) {
@@ -733,7 +736,7 @@ function Signup() {
         ShowToast('Invalid info', 'Please enter all required fields.', 'error');
         return;
     }
-   // Set values
+    // Set values
     const profileData = {
         profile: {
             name: name,
@@ -747,12 +750,12 @@ function Signup() {
     if (phone) profileData.profile.phone = phone;
     if (budget) profileData.profile.budget = budget;
     console.log(profileData);
-     //Set localstorage
-     localStorage.setItem('profileData', JSON.stringify(profileData));
+    //Set localstorage
+    localStorage.setItem('profileData', JSON.stringify(profileData));
     // remove overlay
     document.body.querySelector('#authOverlay').remove();
     // Update profile tab
-     //get html 
+    //get html 
     const display_name = document.querySelector('#profileDisplayName');
     const display_email = document.querySelector('#profileDisplayEmail');
     const display_currency = document.querySelector('#summaryCurrency');
@@ -762,38 +765,61 @@ function Signup() {
     const display_country_input = document.querySelector('#profileCountry');
     const display_currency_input = document.querySelector('#profileCurrency');
     const profile_icon_display = document.querySelector('#profileAvatarInitials');
-     // assign values
-     display_name.textContent = name;
-     display_email.textContent = email;
-     display_currency.textContent = currency;
-     display_country.textContent = country;
-     display_name_input.value = name;
-     display_email_input.value = email;
-     display_country_input.value = country;
-     display_currency_input.value = currency;
-     profile_icon_display.textContent = name.split('')[0];
-     if(phone){
+    // assign values
+    display_name.textContent = name;
+    display_email.textContent = email;
+    display_currency.textContent = currency;
+    display_country.textContent = country;
+    display_name_input.value = name;
+    display_email_input.value = email;
+    display_country_input.value = country;
+    display_currency_input.value = currency;
+    profile_icon_display.textContent = name.split('')[0];
+    if (phone) {
         document.querySelector('#profilePhone').value = phone;
-     }
-     if(budget){
+    }
+    if (budget) {
         document.querySelector('#profileBudget').value = budget;
         document.querySelector('#summaryBudget').textContent = budget;
-     }
+    }
 }
 
 // -------Profile tab editing
 
 // Event listner
-document.addEventListener('change',function(e){
-    if(e.target.closest('.filter-profile') || e.target.closest('.profile-input')){
+document.addEventListener('change', function (e) {
+    if (e.target.closest('.filter-profile') || e.target.closest('.profile-input')) {
         const changes_alter_btn = document.querySelector('.profile-form-actions');
-       if(changes_alter_btn.classList.contains('hidden')){
-        changes_alter_btn.classList.add('flex');
-        changes_alter_btn.classList.remove('hidden');
-       }
+        if (changes_alter_btn.classList.contains('hidden')) {
+            changes_alter_btn.classList.add('flex');
+            changes_alter_btn.classList.remove('hidden');
+        }
     }
 })
-// function
-function ProfileEdit() {
-
+// function for save button
+function ProfileEdit_Save() {
+    // Get html and check if no value is entered
+    const display_name_input = document.querySelector('#profileName');
+    if (!display_name_input.value) ShowToast('Enter name', 'Name cannot be empty', 'warning')
+    const display_email_input = document.querySelector('#profileEmail');
+    if (!display_email_input.value) ShowToast('Enter Email', 'Email cannot be empty', 'warning');
+    const display_country_input = document.querySelector('#profileCountry');
+    if (!display_country_input.value) ShowToast('Enter country', 'Country is required', 'warning');
+    const display_currency_input = document.querySelector('#profileCurrency');
+    const display_phone_input = document.querySelector('#profilePhone');
+    const display_budget_input = document.querySelector('#profileBudget');
+    // Make data object
+    const data = {
+        profile: {
+            name: display_name_input.value,
+            email: display_email_input.value,
+            country: display_country_input.value,
+            currency: display_currency_input.value,
+            phone: display_phone_input.value,
+            budget: display_budget_input.value,
+        }
+    }
+    //Set localstorage
+    localStorage.setItem('profileData', JSON.stringify(data));
 }
+// Function for discard button
