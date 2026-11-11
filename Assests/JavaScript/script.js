@@ -793,6 +793,33 @@ function Signup() {
 document.addEventListener('change', function (e) {
     if (e.target.closest('.filter-profile') || e.target.closest('.profile-input')) {
         const changes_alter_btn = document.querySelector('.profile-form-actions');
+        // check if values are same as localstorage
+        const display_name_input = document.querySelector('#profileName');
+        const display_email_input = document.querySelector('#profileEmail');
+        const display_country_input = document.querySelector('#profileCountry');
+        const display_currency_input = document.querySelector('#profileCurrency');
+        const display_phone_input = document.querySelector('#profilePhone');
+        const display_budget_input = document.querySelector('#profileBudget');
+        // Make data object
+        const data = {
+            profile: {
+                name: display_name_input.value,
+                email: display_email_input.value,
+                country: display_country_input.value,
+                currency: display_currency_input.value,
+                phone: display_phone_input.value,
+                budget: display_budget_input.value,
+            }
+        }
+        const localstorageData = localStorage.getItem('profileData');
+        if (JSON.stringify(data) === localstorageData) {
+            // hide save/ discard bar
+            const changes_alter_btn = document.querySelector('.profile-form-actions');
+            changes_alter_btn.classList.add('hidden');
+            changes_alter_btn.classList.remove('flex');
+            return;
+        }
+        // proceed
         if (changes_alter_btn.classList.contains('hidden')) {
             changes_alter_btn.classList.add('flex');
             changes_alter_btn.classList.remove('hidden');
