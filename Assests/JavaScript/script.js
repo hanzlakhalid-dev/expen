@@ -591,19 +591,13 @@ function addTransaction() {
                     </label>
             </div>
             <div class="box-con-toast">
-    <h2 class="input-toast-h"> Enter Title </h2>
+             <h2 class="input-toast-h"> Enter Title </h2>
                     <div class=" toast-container">
                         <input type="search" class="search-input" id="Type_head"
                             placeholder="Type something i.e Freelance">
                             </div>
                     </div>
-                    <div class="box-con-toast">
-                    <h2 class="input-toast-h"> Enter Meta Title </h2>
-                    <div class="toast-container">
-                        <input type="search" class="search-input" id="Type_meta"
-                        placeholder="Type something i.e Website Project">
-                    </div>
-                    </div>
+                  
                     <div class="box-con-toast">
                     <h2 class="input-toast-h"> Enter Amount</h2>
                     <div class="toast-container">
@@ -667,16 +661,13 @@ function confirmTransaction() {
     const Type = document.querySelector('#filterType_add_transaction').value;
     const Category = document.querySelector('#filterCategory_add_transaction').value;
     const Heading = document.querySelector('#Type_head').value;
-    const Meta_Title = document.querySelector('#Type_meta').value;
     const Amount = document.querySelector('#Type_amount').value;
     let PicSrc = Categories_src['others'];
-    console.log(PicSrc)
     if (Category && Category !== 'others') {
         PicSrc = Categories_src[Category];
-        console.log(PicSrc)
     }
     let Proceed = true;
-    [Type, Category, Heading, Meta_Title, Amount].forEach(val => {
+    [Type, Category, Heading, Amount].forEach(val => {
         if (!val) {
             ShowToast('NO value entered', `Please Enter ${val}`, 'warning');
             Proceed = false;
@@ -690,14 +681,13 @@ function confirmTransaction() {
         const blurE = document.querySelector('.backdrop');
         blurE.remove();
         // get today date
-        //  const date = new Date().toISOString.split('T')[0];
-        // ShowToast('Date', date, 'info')
+        const date = new Date().toISOString().split('T')[0];
         // Append row in and reload balance
         const Transaction_row = document.createElement('li');
-        Transaction_row.dataset.add('data-transaction', Heading);
-        Transaction_row.dataset.add('data-category', Category);
-        Transaction_row.dataset.add('data-type', Type);
-        Transaction_row.dataset.add('data-date', 'Fake');
+        Transaction_row.setAttribute('data-transaction', Heading);
+        Transaction_row.setAttribute('data-category', Category);
+        Transaction_row.setAttribute('data-type', Type);
+        Transaction_row.setAttribute('data-date', date);
         Transaction_row.innerHTML = `
                             <span class="cell-icon"><img src="Assests/Icons light/electricity-bill.svg" alt=""></span>
                             <span class="cell-date">
@@ -721,12 +711,10 @@ function confirmTransaction() {
                                 data-dark="Assests/Icons dark/Drop down icon.svg" alt=""></span>
                        
                                 `
+        // Data update
+        const data_transaction = { transaction: fd, amount: fds }
     }
 }
-//NOTE: The System : Add Transaction > Transactions && Categories update > LocatStorage > UI
-Object.entries(ExpenseData).forEach(([category, data]) => {
-
-});
 
 function Signup() {
     const name = document.querySelector('#signupName').value;
@@ -752,13 +740,12 @@ function Signup() {
     }
     if (phone) profileData.profile.phone = phone;
     if (budget) profileData.profile.budget = budget;
-    console.log(profileData);
     //Set localstorage
     localStorage.setItem('profileData', JSON.stringify(profileData));
     // remove overlay
     document.body.querySelector('#authOverlay').remove();
     // Update profile tab
-    //get html 
+    //get html
     const display_name = document.querySelector('#profileDisplayName');
     const display_email = document.querySelector('#profileDisplayEmail');
     const display_currency = document.querySelector('#summaryCurrency');
@@ -881,3 +868,7 @@ function ProfileEdit_Discard() {
     changes_alter_btn.classList.add('hidden');
     changes_alter_btn.classList.remove('flex');
 }
+//NOTE: The System : Add Transaction > Transactions && Categories update > LocatStorage > UI
+Object.entries(ExpenseData).forEach(([category, data]) => {
+
+});
