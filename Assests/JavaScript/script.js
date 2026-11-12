@@ -819,7 +819,7 @@ function Chart_integrate(data_expense) {
         }
     });
 }
-Chart_integrate(TransactionsData);
+Chart_integrate(TransactionsData.this_month);
 
 
 // Searchbar
@@ -910,7 +910,6 @@ filter_btn_dashboard.addEventListener('change', function () {
     if (!new_value) return;
     const parsed_value = new_value.toLowerCase().replace(/-/g, "_");
     const Rawdata = TransactionsData[parsed_value];
-    console.log(Rawdata, parsed_value)
     const Designated_data = Rawdata;
     // Chart integration
     const canvas = document.getElementById('expenseChart_bycategory');
@@ -922,12 +921,16 @@ filter_btn_dashboard.addEventListener('change', function () {
     // UI values change
     const container_info = document.querySelector('.right-expense-detail-by-category');
     container_info.innerHTML = ''
-    const total = Rawdata.totalAmount;
-    Designated_data.forEach(item => {
-        const category = item.category;
-        const amount = item.amount;
+    let total = 0;
+   Object.entries(Designated_data).forEach(([category, item]) => {
+        total += item.total
+    })
+    Object.entries(Designated_data).forEach(([category, item]) => {
+        //  const category = item.category;
+        console.log(item, category)
+        const amount = Math.round(item.total);
         const newli = document.createElement('li');
-        const percent = ((amount / total) * 100).toFixed(1);
+        const percent = Math.round(((amount / total) * 100).toFixed(1));
         const color = item.color
         newli.innerHTML = `<span class="legend-dot" style="background-color: ${color};"></span>
                                     <span>${category}</span>
