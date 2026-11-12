@@ -308,8 +308,34 @@ function panelswitch(panel) {
     document.body.querySelector(`.${data_Class}`).classList.add('active-panel')
 }
 // Transactions model
-const ExpenseData = {
+const TransactionsData = {
+    // ===== INCOME =====
+    salary: {
+        type: 'income',
+        total: 0,
+        color: '#22c55e',
+        Transactions: []
+    },
+    freelance: {
+        type: 'income',
+        total: 0,
+        color: '#14b8a6',
+        Transactions: []
+    },
+    other_income: {
+        type: 'income',
+        total: 33,
+        color: '#06b6d4',
+        Transactions: [
+            { transaction: 'Fhtd', amount: 14250.75 },
+            { transaction: 'hsf', amount: 6890.50 },
+            { transaction: 'ndgj', amount: 9240.00 }
+        ]
+    },
+
+    // ===== EXPENSE =====
     food: {
+        type: 'expense',
         total: 203,
         color: '#3b82f6',
         Transactions: [
@@ -319,6 +345,7 @@ const ExpenseData = {
         ]
     },
     transport: {
+        type: 'expense',
         total: 305,
         color: '#10b981',
         Transactions: [
@@ -326,45 +353,50 @@ const ExpenseData = {
         ]
     },
     shopping: {
+        type: 'expense',
         total: 305,
         color: '#f59e0b',
         Transactions: [
             { transaction: 'eta', amount: 14250.75 },
             { transaction: 'hghz', amount: 6890.50 },
-            { transaction: 'as', amount: 9240.00 },
+            { transaction: 'as', amount: 9240.00 }
         ]
     },
     bills: {
+        type: 'expense',
         total: 305,
         color: '#ef4444',
         Transactions: [
             { transaction: 'wefwea', amount: 14250.75 },
-            { transaction: 'eatg', amount: 6890.50 },
+            { transaction: 'eatg', amount: 6890.50 }
         ]
     },
     entertainment: {
+        type: 'expense',
         total: 305,
         color: '#8b5cf6',
         Transactions: [
             { transaction: 'eta', amount: 14250.75 },
-            { transaction: 'agsd', amount: 6890.50 },
+            { transaction: 'agsd', amount: 6890.50 }
         ]
     },
     health: {
+        type: 'expense',
         total: 305,
         color: '#ec4899',
         Transactions: [
             { transaction: 'aseffa', amount: 14250.75 },
-            { transaction: 'fad', amount: 6890.50 },
+            { transaction: 'fad', amount: 6890.50 }
         ]
     },
-    other: {
+    other_expense: {
+        type: 'expense',
         total: 33,
         color: '#06b6d4',
         Transactions: [
             { transaction: 'Fhtd', amount: 14250.75 },
             { transaction: 'hsf', amount: 6890.50 },
-            { transaction: 'ndgj', amount: 9240.00 },
+            { transaction: 'ndgj', amount: 9240.00 }
         ]
     }
 };
@@ -712,7 +744,13 @@ function confirmTransaction() {
                        
                                 `
         // Data update
-        const data_transaction = { transaction: fd, amount: fds }
+        const data_transaction = { transaction: Heading, amount: Amount };
+        console.log('Category =', JSON.stringify(Category));
+        console.log('key =', JSON.stringify(Category.toLowerCase()));
+        console.log('keys =', Object.keys(ExpenseData));
+        ExpenseData[Category.toLowerCase()].Transactions.push(data_transaction);
+        ExpenseData[Category.toLowerCase()].total += Amount;
+        console.log(ExpenseData);
     }
 }
 
