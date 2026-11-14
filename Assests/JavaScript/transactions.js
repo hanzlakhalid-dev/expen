@@ -25,21 +25,26 @@ function addTransaction() {
                             </div>
                             <div class="box-con-toast">
                             <h2 class="input-toast-h"> Select Category </h2>
-                            <label class="toast-container">
-                            <select class="filter-select" id="filterCategory_add_transaction">
-                            <option data-category="income" value="salary">Salary</option>
-                            <option data-category="income" value="freelance">Freelance</option>
-                            <option data-category="expense" value="food">Food</option>
-                            <option data-category="expense" value="transport">Transport</option>
-                            <option data-category="expense" value="bills">Bills</option>
-                            <option data-category="expense" value="shopping">Shopping</option>
-                            <option data-category="expense" value="education">Education</option>
-                            <option data-category="neutral" value="others">Others</option>
-                            </select>
-                            <img class="select-chevron" src="Assests/Icons light/Drop down icon.svg"
-                            data-light="Assests/Icons light/Drop down icon.svg"
-                            data-dark="Assests/Icons dark/Drop down icon.svg" alt="">
-                    </label>
+                           <label class="toast-container">
+                        <select class="filter-select" id="filterCategory_add_transaction">
+                         <option data-category="income" value="salary">Salary</option>
+                         <option data-category="income" value="freelance">Freelance</option>
+                         <option data-category="income" value="investments">Investments</option>
+                         <option data-category="income" value="gifts">Gifts</option>
+                         <option data-category="expense" value="food">Food</option>
+                         <option data-category="expense" value="transport">Transport</option>
+                         <option data-category="expense" value="bills">Bills</option>
+                         <option data-category="expense" value="shopping">Shopping</option>
+                         <option data-category="expense" value="education">Education</option>
+                         <option data-category="expense" value="entertainment">Entertainment</option>
+                         <option data-category="expense" value="health">Health</option>
+                        
+                         <option data-category="neutral" value="others">Others</option>
+                         </select>
+                  <img class="select-chevron" src="Assests/Icons light/Drop down icon.svg"
+                  data-light="Assests/Icons light/Drop down icon.svg"
+                   data-dark="Assests/Icons dark/Drop down icon.svg" alt="">
+                      </label>
             </div>
             <div class="box-con-toast">
              <h2 class="input-toast-h"> Enter Title </h2>
@@ -76,7 +81,7 @@ function addTransaction() {
 function confirmTransaction() {
     // Take data 
     const Type = document.querySelector('#filterType_add_transaction').value;
-    const Category = document.querySelector('#filterCategory_add_transaction').value;
+    let Category = document.querySelector('#filterCategory_add_transaction').value;
     const Heading = document.querySelector('#Type_head').value;
     const Amount = document.querySelector('#Type_amount').value;
     let PicSrc = Categories_src['others'];
@@ -92,6 +97,11 @@ function confirmTransaction() {
 
     })
     if (Proceed == true) {
+        //Handle others
+        if (Category == 'others') {
+            if (Type === 'income') Category = 'other_income'
+            else Category = 'other_expense'
+        }
         // Hide toast and blur Element
         const toast_existing = document.querySelector('.Transaction_toast');
         toast_existing.remove();
