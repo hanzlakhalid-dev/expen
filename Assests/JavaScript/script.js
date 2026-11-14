@@ -327,12 +327,28 @@ const TransactionsData = {
                 { transaction: 'Website Redesign - Client A', amount: 1200.00 }
             ]
         },
-        other_income: {
+        investments: {
             type: 'income',
             total: 180.50,
             color: '#06b6d4',
             Transactions: [
                 { transaction: 'Dividend Payment - Vanguard', amount: 180.50 }
+            ]
+        },
+        gifts: {
+            type: 'income',
+            total: 100.00,
+            color: '#a855f7',
+            Transactions: [
+                { transaction: 'Birthday Gift from Parents', amount: 100.00 }
+            ]
+        },
+        other_income: {
+            type: 'income',
+            total: 95.00,
+            color: '#0ea5e9',
+            Transactions: [
+                { transaction: 'Sold Old Monitor on eBay', amount: 95.00 }
             ]
         },
 
@@ -430,10 +446,26 @@ const TransactionsData = {
                 { transaction: 'WordPress Bug Fix - Client D', amount: 500.00 }
             ]
         },
+        investments: {
+            type: 'income',
+            total: 195.00,
+            color: '#06b6d4',
+            Transactions: [
+                { transaction: 'Dividend Payment - Vanguard', amount: 195.00 }
+            ]
+        },
+        gifts: {
+            type: 'income',
+            total: 50.00,
+            color: '#a855f7',
+            Transactions: [
+                { transaction: 'Cash Gift from Grandparents', amount: 50.00 }
+            ]
+        },
         other_income: {
             type: 'income',
             total: 150.00,
-            color: '#06b6d4',
+            color: '#0ea5e9',
             Transactions: [
                 { transaction: 'Refund from Amazon Return', amount: 150.00 }
             ]
@@ -538,16 +570,28 @@ const TransactionsData = {
                 { transaction: 'WordPress Bug Fix - Client D', amount: 500.00 }
             ]
         },
-        other_income: {
+        investments: {
             type: 'income',
-            total: 2845.50,
+            total: 810.50,
             color: '#06b6d4',
             Transactions: [
-                { transaction: 'Tax Refund - IRS', amount: 1200.00 },
-                { transaction: 'Dividend Payments - Vanguard (Annual)', amount: 810.50 },
-                { transaction: 'Cashback & Rewards', amount: 235.00 },
-                { transaction: 'Sold Old Items Online', amount: 400.00 },
-                { transaction: 'Birthday & Holiday Gifts', amount: 200.00 }
+                { transaction: 'Dividend Payments - Vanguard (Annual)', amount: 810.50 }
+            ]
+        },
+        gifts: {
+            type: 'income',
+            total: 450.00,
+            color: '#a855f7',
+            Transactions: [
+                { transaction: 'Birthday & Holiday Gifts from Family', amount: 450.00 }
+            ]
+        },
+        other_income: {
+            type: 'income',
+            total: 1200.00,
+            color: '#0ea5e9',
+            Transactions: [
+                { transaction: 'Tax Refund - IRS', amount: 1200.00 }
             ]
         },
 
@@ -631,11 +675,11 @@ const TransactionsData = {
             total: 985.00,
             color: '#06b6d4',
             Transactions: [
-                { transaction: 'Pet Food & Supplies - Monthly', amount: 45.00 },
-                { transaction: 'Gifts - Birthdays & Holidays', amount: 250.00 },
+                { transaction: 'Pet Food & Supplies - Monthly', amount: 540.00 },
                 { transaction: 'Charity Donation - Red Cross', amount: 100.00 },
                 { transaction: 'Dry Cleaning - Annual', amount: 85.00 },
-                { transaction: 'Home Repair - Plumber', amount: 125.00 }
+                { transaction: 'Home Repair - Plumber', amount: 125.00 },
+                { transaction: 'Gift Wrap & Cards', amount: 135.00 }
             ]
         }
     },
@@ -663,15 +707,28 @@ const TransactionsData = {
                 { transaction: 'Logo & Branding - Client L', amount: 550.00 }
             ]
         },
-        other_income: {
+        investments: {
             type: 'income',
-            total: 1950.00,
+            total: 680.00,
             color: '#06b6d4',
             Transactions: [
-                { transaction: 'Tax Refund - IRS', amount: 800.00 },
-                { transaction: 'Dividend Payments - Vanguard (Annual)', amount: 680.00 },
-                { transaction: 'Sold Old Items Online', amount: 320.00 },
-                { transaction: 'Cashback & Rewards', amount: 100.00 }
+                { transaction: 'Dividend Payments - Vanguard (Annual)', amount: 680.00 }
+            ]
+        },
+        gifts: {
+            type: 'income',
+            total: 300.00,
+            color: '#a855f7',
+            Transactions: [
+                { transaction: 'Birthday & Holiday Gifts from Family', amount: 300.00 }
+            ]
+        },
+        other_income: {
+            type: 'income',
+            total: 800.00,
+            color: '#0ea5e9',
+            Transactions: [
+                { transaction: 'Tax Refund - IRS', amount: 800.00 }
             ]
         },
 
@@ -751,15 +808,13 @@ const TransactionsData = {
             total: 720.00,
             color: '#06b6d4',
             Transactions: [
-                { transaction: 'Pet Food & Supplies - Monthly', amount: 45.00 },
-                { transaction: 'Gifts - Birthdays & Holidays', amount: 250.00 },
+                { transaction: 'Pet Food & Supplies - Monthly', amount: 540.00 },
                 { transaction: 'Charity Donations', amount: 100.00 },
-                { transaction: 'Dry Cleaning', amount: 85.00 }
+                { transaction: 'Dry Cleaning', amount: 80.00 }
             ]
         }
     }
 };
-
 // Chart integration
 function Chart_integrate(data_expense) {
     // expense data model
@@ -927,7 +982,6 @@ filter_btn_dashboard.addEventListener('change', function () {
     })
     Object.entries(Designated_data).forEach(([category, item]) => {
         //  const category = item.category;
-        console.log(item, category)
         const amount = Math.round(item.total);
         const newli = document.createElement('li');
         const percent = Math.round(((amount / total) * 100).toFixed(1));
@@ -1066,7 +1120,7 @@ function confirmTransaction() {
     let Proceed = true;
     [Type, Category, Heading, Amount].forEach(val => {
         if (!val) {
-            ShowToast('NO value entered', `Please Enter ${val}`, 'warning');
+            ShowToast('NO value entered', `Please Enter all values`, 'warning');
             Proceed = false;
         }
 
@@ -1085,6 +1139,7 @@ function confirmTransaction() {
         Transaction_row.setAttribute('data-category', Category);
         Transaction_row.setAttribute('data-type', Type);
         Transaction_row.setAttribute('data-date', date);
+        Transaction_row.setAttribute('data-transaction-keyword', Heading);
         Transaction_row.innerHTML = `
                             <span class="cell-icon"><img src="Assests/Icons light/electricity-bill.svg" alt=""></span>
                             <span class="cell-date">
@@ -1092,12 +1147,11 @@ function confirmTransaction() {
                             <span class="date-sub">06:30 PM</span>
                             </span>
                             <span class="cell-desc">
-                                <span class="desc-title">Internet Bill</span>
-                                <span class="desc-sub">Fiber optic plan</span>
+                                <span class="desc-title">${Heading}</span>
                                 </span>
-                                <span class="cell-category"><span class="pill pill-indigo">Bills</span></span>
-                            <span class="cell-type type-expense">Expense</span>
-                            <span class="cell-amount amount-expense">-$45.00</span>
+                                <span class="cell-category"><span class="pill pill-indigo">${Category}</span></span>
+                            <span class="cell-type type-expense">${Type}</span>
+                            <span class="cell-amount amount-expense">-${Amount}</span>
                             <span class="cell-actions">
                                 <button class="icon-btn delete-btn" aria-label="Delete">
                                 <img src="Assests/Icons light/Delete icon.svg" alt="">
@@ -1113,8 +1167,8 @@ function confirmTransaction() {
         console.log('Category =', JSON.stringify(Category));
         console.log('key =', JSON.stringify(Category.toLowerCase()));
         console.log('keys =', Object.keys(TransactionsData));
-        TransactionsData[Category.toLowerCase()].Transactions.push(data_transaction);
-        TransactionsData[Category.toLowerCase()].total += Amount;
+        TransactionsData.this_month[Category.toLowerCase()].Transactions.push(data_transaction);
+        TransactionsData.this_month[Category.toLowerCase()].total += Amount;
         console.log(TransactionsData);
     }
 }
