@@ -25,3 +25,23 @@ document.addEventListener('DOMContentLoaded', function () {
             theme_Change_BTN_Mobile.innerHTML = `<img src="Assests/Icons light/Light mode theme icon.svg"  alt="">`
         }
 })
+// Theme Change logic here
+const theme_Change_BTN = document.querySelectorAll('.theme-switcher');
+theme_Change_BTN.forEach(btn => {
+    btn.addEventListener('click', function () {
+        const theme_switcher_PC = document.querySelector('.theme-switcher-pc');
+        const theme_Change_BTN_Mobile = document.querySelector('.mobile-theme-switcher')
+        const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('data-theme', newTheme);
+        if (newTheme === 'dark') {
+            theme_switcher_PC.innerHTML = `<img src="Assests/Icons light/Dark mode theme icon.svg"  alt="">Dark mode`
+            theme_Change_BTN_Mobile.innerHTML = `<img src="Assests/Icons light/Dark mode theme icon.svg"  alt="">`
+        }
+        else {
+            theme_switcher_PC.innerHTML = `<img src="Assests/Icons light/Light mode theme icon.svg"  alt="">Light mode`
+            theme_Change_BTN_Mobile.innerHTML = `<img src="Assests/Icons light/Light mode theme icon.svg"  alt="">`
+        }
+        svgInvert(newTheme);
+    });
+});
