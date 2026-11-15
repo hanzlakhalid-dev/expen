@@ -80,16 +80,31 @@ function Filter_Transactins() {
 // -- Currency formatter
 function CurrencyFormat(value) {
     // Get from localstorage
-   const currecyFormat = JSON.parse(localStorage.getItem('profileData')).profile.currency;
-   if(!currecyFormat) return;
-   // Check for grouping and return values
-   if(currecyFormat == 'USD' || currecyFormat == 'GBP' || currecyFormat == 'AUD' || currecyFormat == 'INR' || currecyFormat == 'JPY' || currecyFormat == 'CAD'){
-    return(`${currecyFormat}${value}`);
-   }
-   if (currecyFormat == 'PKR' || currecyFormat == 'AED' || currecyFormat == 'SAR'){
-    return(`${currecyFormat} ${value}`)
-   }
-   if(currecyFormat == 'EUR'){
-    return(`${value} ${currecyFormat}`)
-   }
+    const currecyFormat = JSON.parse(localStorage.getItem('profileData')).profile.currency;
+    if (!currecyFormat) return;
+    // Array
+    const symbols = {
+        USD: '$',
+        GBP: '£',
+        AUD: 'A$',
+        INR: '₹',
+        JPY: '¥',
+        CAD: 'C$',
+        PKR: 'Rs',
+        AED: 'د.إ',
+        SAR: '﷼',
+        EUR: '€'
+    };
+
+    const symbol = symbols[currecyFormat] || currecyFormat;
+    // Check for grouping and return values
+    if (currecyFormat == 'USD' || currecyFormat == 'GBP' || currecyFormat == 'AUD' || currecyFormat == 'INR' || currecyFormat == 'JPY' || currecyFormat == 'CAD') {
+        return (`${symbol}${value}`);
+    }
+    if (currecyFormat == 'PKR' || currecyFormat == 'AED' || currecyFormat == 'SAR') {
+        return (`${symbol} ${value}`)
+    }
+    if (currecyFormat == 'EUR') {
+        return (`${value} ${symbol}`)
+    }
 }
