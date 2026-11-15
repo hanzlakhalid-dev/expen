@@ -76,6 +76,17 @@ const TransactionsData = {
                 { transaction: 'H&M Clothing', amount: 62.00 }
             ]
         },
+        education: {
+            type: 'expense',
+            total: 620.00,
+            color: '#f97316',
+            Transactions: [
+                { transaction: 'Udemy - React Course', amount: 19.99 },
+                { transaction: 'Coursera - Data Science Specialization', amount: 49.00 },
+                { transaction: 'Textbook - Clean Code', amount: 32.00 },
+                { transaction: 'University Tuition - Monthly Installment', amount: 519.01 }
+            ]
+        },
         bills: {
             type: 'expense',
             total: 1149.99,
@@ -110,7 +121,7 @@ const TransactionsData = {
         other_expense: {
             type: 'expense',
             total: 74.50,
-            color: '#06b6d4',
+            color: '#64748b',
             Transactions: [
                 { transaction: 'Pet Food - PetSmart', amount: 45.50 },
                 { transaction: 'Dry Cleaning', amount: 29.00 }
@@ -192,6 +203,17 @@ const TransactionsData = {
                 { transaction: 'Amazon - Kitchen Gadgets', amount: 56.00 }
             ]
         },
+        education: {
+            type: 'expense',
+            total: 575.00,
+            color: '#f97316',
+            Transactions: [
+                { transaction: 'Udemy - Node.js Bootcamp', amount: 15.99 },
+                { transaction: 'Library Late Fees', amount: 4.00 },
+                { transaction: 'University Tuition - Monthly Installment', amount: 519.01 },
+                { transaction: 'Notebooks & Stationery', amount: 36.00 }
+            ]
+        },
         bills: {
             type: 'expense',
             total: 1144.99,
@@ -226,7 +248,7 @@ const TransactionsData = {
         other_expense: {
             type: 'expense',
             total: 85.00,
-            color: '#06b6d4',
+            color: '#64748b',
             Transactions: [
                 { transaction: 'Pet Grooming - PetSmart', amount: 55.00 },
                 { transaction: 'Car Registration Renewal', amount: 30.00 }
@@ -325,6 +347,17 @@ const TransactionsData = {
                 { transaction: 'Samsung - Smart Watch', amount: 299.99 }
             ]
         },
+        education: {
+            type: 'expense',
+            total: 6850.00,
+            color: '#f97316',
+            Transactions: [
+                { transaction: 'University Tuition - 12 months', amount: 6228.00 },
+                { transaction: 'Online Courses (Udemy, Coursera)', amount: 350.00 },
+                { transaction: 'Textbooks - Annual', amount: 172.00 },
+                { transaction: 'Exam Registration Fees', amount: 100.00 }
+            ]
+        },
         bills: {
             type: 'expense',
             total: 14940.00,
@@ -364,7 +397,7 @@ const TransactionsData = {
         other_expense: {
             type: 'expense',
             total: 985.00,
-            color: '#06b6d4',
+            color: '#64748b',
             Transactions: [
                 { transaction: 'Pet Food & Supplies - Monthly', amount: 540.00 },
                 { transaction: 'Charity Donation - Red Cross', amount: 100.00 },
@@ -458,6 +491,17 @@ const TransactionsData = {
                 { transaction: 'Holiday Gifts - Shopping', amount: 300.00 }
             ]
         },
+        education: {
+            type: 'expense',
+            total: 6050.00,
+            color: '#f97316',
+            Transactions: [
+                { transaction: 'University Tuition - 12 months', amount: 5480.00 },
+                { transaction: 'Online Courses', amount: 320.00 },
+                { transaction: 'Textbooks - Annual', amount: 150.00 },
+                { transaction: 'Exam Registration Fees', amount: 100.00 }
+            ]
+        },
         bills: {
             type: 'expense',
             total: 14200.00,
@@ -497,7 +541,7 @@ const TransactionsData = {
         other_expense: {
             type: 'expense',
             total: 720.00,
-            color: '#06b6d4',
+            color: '#64748b',
             Transactions: [
                 { transaction: 'Pet Food & Supplies - Monthly', amount: 540.00 },
                 { transaction: 'Charity Donations', amount: 100.00 },
@@ -506,13 +550,24 @@ const TransactionsData = {
         }
     }
 };
-// Categories src 
+
+// Categories src
 const Categories_src = {
+    // Income
+    salary: 'Assests/Icons light/salary.svg',
+    freelance: 'Assests/Icons light/freelance.svg',
+    investments: 'Assests/Icons light/investments.svg',
+    gifts: 'Assests/Icons light/gifts.svg',
+    other_income: 'Assests/Icons light/others.svg',
+    // Expense
     food: 'Assests/Icons light/food.svg',
     transport: 'Assests/Icons light/transport.svg',
     shopping: 'Assests/Icons light/shopping.svg',
+    education: 'Assests/Icons light/education.svg',
     bills: 'Assests/Icons light/electricity-bill.svg',
     entertainment: 'Assests/Icons light/entertainment.svg',
     health: 'Assests/Icons light/health.svg',
+    other_expense: 'Assests/Icons light/others.svg',
+    // Fallback
     others: 'Assests/Icons light/others.svg'
 };
