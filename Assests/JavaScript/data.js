@@ -289,7 +289,7 @@ const TransactionsData = {
         // ===== EXPENSE =====
         food: {
             type: 'expense',
-            total: 7845.60,
+            total: 1405.00,
             color: '#3b82f6',
             Transactions: [
                 { transaction: 'Grocery Shopping - Monthly Avg', amount: 420.00 },

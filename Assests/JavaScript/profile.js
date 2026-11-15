@@ -9,7 +9,6 @@ if (existingProfile) {
     const display_name_input = document.querySelector('#profileName');
     const display_email_input = document.querySelector('#profileEmail');
     const display_country_input = document.querySelector('#profileCountry');
-    const display_currency_input = document.querySelector('#profileCurrency');
     const profile_icon_display = document.querySelector('#profileAvatarInitials');
     // assign values
     display_name.textContent = data.name;
@@ -19,7 +18,6 @@ if (existingProfile) {
     display_name_input.value = data.name;
     display_email_input.value = data.email;
     display_country_input.value = data.country;
-    display_currency_input.value = data.currency;
     profile_icon_display.textContent = data.name.split('')[0];
     if (data.phone) {
         document.querySelector('#profilePhone').value = data.phone;

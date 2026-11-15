@@ -77,3 +77,19 @@ function Filter_Transactins() {
         })
     }
 };
+// -- Currency formatter
+function CurrencyFormat(value) {
+    // Get from localstorage
+   const currecyFormat = JSON.parse(localStorage.getItem('profileData')).profile.currency;
+   if(!currecyFormat) return;
+   // Check for grouping and return values
+   if(currecyFormat == 'USD' || currecyFormat == 'GBP' || currecyFormat == 'AUD' || currecyFormat == 'INR' || currecyFormat == 'JPY' || currecyFormat == 'CAD'){
+    return(`${currecyFormat}${value}`);
+   }
+   if (currecyFormat == 'PKR' || currecyFormat == 'AED' || currecyFormat == 'SAR'){
+    return(`${currecyFormat} ${value}`)
+   }
+   if(currecyFormat == 'EUR'){
+    return(`${value} ${currecyFormat}`)
+   }
+}

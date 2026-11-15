@@ -109,6 +109,7 @@ function confirmTransaction() {
         blurE.remove();
         // get today date
         const date = new Date().toISOString().split('T')[0];
+        console.log(date)
         // Append row in and reload balance
         const Transaction_row = document.createElement('li');
         Transaction_row.setAttribute('data-transaction', Heading);
@@ -117,16 +118,16 @@ function confirmTransaction() {
         Transaction_row.setAttribute('data-date', date);
         Transaction_row.setAttribute('data-transaction-keyword', Heading);
         Transaction_row.innerHTML = `
-                            <span class="cell-icon"><img src="Assests/Icons light/electricity-bill.svg" alt=""></span>
+                            <span class="cell-icon"><img src="${PicSrc}" alt=""></span>
                             <span class="cell-date">
-                            <span class="date-main">Sep 10, 2023</span>
-                            <span class="date-sub">06:30 PM</span>
+                            <span class="date-main"></span>
+                            <span class="date-sub"></span>
                             </span>
                             <span class="cell-desc">
                                 <span class="desc-title">${Heading}</span>
                                 </span>
                                 <span class="cell-category"><span class="pill pill-indigo">${Category}</span></span>
-                            <span class="cell-type type-expense">${Type}</span>
+                            <span class="cell-type type-${Type}">${Type}</span>
                             <span class="cell-amount amount-expense">-${Amount}</span>
                             <span class="cell-actions">
                                 <button class="icon-btn delete-btn" aria-label="Delete">
@@ -136,15 +137,14 @@ function confirmTransaction() {
                                 <span class="cell-chevron"><img src="Assests/Icons light/Drop down icon.svg"
                                 data-light="Assests/Icons light/Drop down icon.svg"
                                 data-dark="Assests/Icons dark/Drop down icon.svg" alt=""></span>
-                       
                                 `
         // Data update
-        const data_transaction = { transaction: Heading, amount: Amount };
+        const data_transaction = { transaction: Heading, amount: Number.parseInt(Amount) };
         console.log('Category =', JSON.stringify(Category));
         console.log('key =', JSON.stringify(Category.toLowerCase()));
         console.log('keys =', Object.keys(TransactionsData));
         TransactionsData.this_month[Category.toLowerCase()].Transactions.push(data_transaction);
-        TransactionsData.this_month[Category.toLowerCase()].total += Amount;
+        TransactionsData.this_month[Category.toLowerCase()].total += Number.parseInt(Amount);
         console.log(TransactionsData);
     }
 }
@@ -172,3 +172,5 @@ function switch_category(value) {
     const firstVisible = [...visible_option].find(o => o.style.display !== 'none');
     if (firstVisible) selector.value = firstVisible.value;
 };
+
+//TODO: Correct formatting of currecy symobol in auth.js
