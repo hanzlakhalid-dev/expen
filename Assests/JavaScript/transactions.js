@@ -84,6 +84,11 @@ function confirmTransaction() {
     let Category = document.querySelector('#filterCategory_add_transaction').value;
     const Heading = document.querySelector('#Type_head').value;
     const Amount = document.querySelector('#Type_amount').value;
+    //Handle others
+    if (Category == 'others') {
+        if (Type === 'income') Category = 'other_income'
+        else Category = 'other_expense'
+    }
     let PicSrc = Categories_src['others'];
     if (Category && Category !== 'others') {
         PicSrc = Categories_src[Category];
@@ -99,11 +104,6 @@ function confirmTransaction() {
     if (Proceed == true) {
         let ParsedAmount = CurrencyFormat(Amount);
         if (Type == 'expense') ParsedAmount = `-${CurrencyFormat(Amount)}`;
-        //Handle others
-        if (Category == 'others') {
-            if (Type === 'income') Category = 'other_income'
-            else Category = 'other_expense'
-        }
         // Hide toast and blur Element
         const toast_existing = document.querySelector('.Transaction_toast');
         toast_existing.remove();
@@ -112,18 +112,16 @@ function confirmTransaction() {
         // get today date
         const dateObj = new Date()
         const date = dateObj.toISOString().split('T')[0];
-        const month = dateObj.toLocaleString('en-US', { month: 'short', timeZone: 'Asia/Karachi' });
-        const day = dateObj.toLocaleString('en-US', { day: 'numeric', timeZone: 'Asia/Karachi' });
-        const year = dateObj.toLocaleString('en-US', { year: 'numeric', timeZone: 'Asia/Karachi' });
+        const month = dateObj.toLocaleString('en-US', { month: 'short' });
+        const day = dateObj.toLocaleString('en-US', { day: 'numeric' });
+        const year = dateObj.toLocaleString('en-US', { year: 'numeric' });
 
         const formattedDate = `${month} ${day}, ${year}`;
         const formattedTime = dateObj.toLocaleTimeString('en-US', {
             hour: 'numeric',
             minute: '2-digit',
-            hour12: true,
-            timeZone: 'Asia/Karachi'
+            hour12: true
         });
-        console.log(formattedDate, formattedTime);
         // Append row in and reload balance
         const Transaction_row = document.createElement('li');
         Transaction_row.setAttribute('data-transaction', Heading);
@@ -142,7 +140,7 @@ function confirmTransaction() {
                                 </span>
                                 <span class="cell-category"><span class="pill pill-indigo">${Category}</span></span>
                             <span class="cell-type type-${Type}">${Type}</span>
-                            <span class="cell-amount amount-expense">${ParsedAmount}</span>
+                            <span class="cell-amount amount-${Type}">${ParsedAmount}</span>
                             <span class="cell-actions">
                                 <button class="icon-btn delete-btn" aria-label="Delete">
                                 <img src="Assests/Icons light/Delete icon.svg" alt="">
@@ -153,13 +151,9 @@ function confirmTransaction() {
                                 data-dark="Assests/Icons dark/Drop down icon.svg" alt=""></span>
                                 `
         // Data update
-        const data_transaction = { transaction: Heading, amount: Number(Amount) };
-        console.log('Category =', JSON.stringify(Category));
-        console.log('key =', JSON.stringify(Category.toLowerCase()));
-        console.log('keys =', Object.keys(TransactionsData));
-        TransactionsData.this_month[Category.toLowerCase()].Transactions.push(data_transaction);
-        TransactionsData.this_month[Category.toLowerCase()].total += Number(Amount);
-        console.log(TransactionsData);
+        const cat = TransactionsData.this_month[Category.toLowerCase()];
+        cat.Transactions.push({ transaction: Heading, amount: Number(Amount) });
+        cat.total = cat.Transactions.reduce((s, t) => s + t.amount, 0);
     }
 }
 
