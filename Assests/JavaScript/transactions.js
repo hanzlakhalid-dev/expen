@@ -155,6 +155,15 @@ function confirmTransaction() {
         const cat = TransactionsData.this_month[Category.toLowerCase()];
         cat.Transactions.push({ transaction: Heading, amount: Number(Amount) });
         cat.total = cat.Transactions.reduce((s, t) => s + t.amount, 0);
+        if (Type == 'income') {
+            TransactionsData.totals.this_month.income += Number(Amount);
+            TransactionsData.totals.this_month.balance += Number(Amount);
+        }
+        else {
+            TransactionsData.totals.this_month.expense -= Number(Amount);
+            TransactionsData.totals.this_month.balance -= Number(Amount);
+        }
+
         // localstorage update
         localStorage.setItem('Transactions', JSON.stringify(TransactionsData));
         // Append in UI
@@ -192,6 +201,13 @@ function confirmTransaction() {
                                     <span class="legend-percent">${percent}%</span>`
             container_info.appendChild(newli)
         })
+        // -- income, expense, balance cards update
+        const income_Card = document.querySelector('.income-f');
+        const expense_Card = document.querySelector('.expense-f');
+        const balance_Card = document.querySelector('.total-balance-f');
+        income_Card.textContent = CurrencyFormat(TransactionsData.totals.this_month.income);
+        expense_Card.textContent = CurrencyFormat(TransactionsData.totals.this_month.expense);
+        balance_Card.textContent = CurrencyFormat(TransactionsData.totals.this_month.balance);
     }
 }
 

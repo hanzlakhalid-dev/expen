@@ -1,5 +1,27 @@
 // Transactions model
 const TransactionsData = {
+    totals: {
+        this_month: {
+           income: 555,
+           expense: 433,
+           balance: 332
+        },
+        last_year: {
+           income: 555,
+           expense: 433,
+           balance: 332
+        },
+        last_month: {
+           income: 555,
+           expense: 433,
+           balance: 332
+        },
+        this_year: {
+           income: 555,
+           expense: 433,
+           balance: 332
+        }
+    },
     this_month: {
         // ===== INCOME =====
         salary: {
