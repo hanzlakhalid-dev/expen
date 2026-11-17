@@ -551,14 +551,15 @@ const TransactionsData = {
     }
 };
 
-// Categories src
+// Categories src 
 const Categories_src = {
     // Income
-    salary: 'Assests/Icons light/salary.svg',
+    salary: 'Assests/Icons light/wallet-icon.svg',
     freelance: 'Assests/Icons light/freelance.svg',
-    investments: 'Assests/Icons light/investments.svg',
-    gifts: 'Assests/Icons light/gifts.svg',
+    investments: 'Assests/Icons light/investment.svg',
+    gifts: 'Assests/Icons light/gift.svg',
     other_income: 'Assests/Icons light/others.svg',
+    
     // Expense
     food: 'Assests/Icons light/food.svg',
     transport: 'Assests/Icons light/transport.svg',
@@ -568,6 +569,7 @@ const Categories_src = {
     entertainment: 'Assests/Icons light/entertainment.svg',
     health: 'Assests/Icons light/health.svg',
     other_expense: 'Assests/Icons light/others.svg',
+    
     // Fallback
     others: 'Assests/Icons light/others.svg'
 };

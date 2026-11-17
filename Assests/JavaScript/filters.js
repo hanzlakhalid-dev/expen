@@ -108,3 +108,4 @@ function CurrencyFormat(value) {
         return (`${value} ${symbol}`)
     }
 }
+// Recent Transactions update

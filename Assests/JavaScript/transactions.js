@@ -124,6 +124,7 @@ function confirmTransaction() {
         });
         // Append row in and reload balance
         const Transaction_row = document.createElement('li');
+        Transaction_row.classList.add('transaction-row')
         Transaction_row.setAttribute('data-transaction', Heading);
         Transaction_row.setAttribute('data-category', Category);
         Transaction_row.setAttribute('data-type', Type);
@@ -154,6 +155,43 @@ function confirmTransaction() {
         const cat = TransactionsData.this_month[Category.toLowerCase()];
         cat.Transactions.push({ transaction: Heading, amount: Number(Amount) });
         cat.total = cat.Transactions.reduce((s, t) => s + t.amount, 0);
+        // localstorage update
+        localStorage.setItem('Transactions', JSON.stringify(TransactionsData));
+        // Append in UI
+        document.querySelector('.transaction-table').appendChild(Transaction_row);
+        // Update UI in desktop
+        // -- Rerun chart
+        const canvas = document.getElementById('expenseChart_bycategory');
+        const existingChart = Chart.getChart(canvas);
+        if (existingChart) {
+            existingChart.destroy();
+        }
+        Chart_integrate(TransactionsData.this_month);
+        // --Rerun category distribution near chart
+        const new_value = filter_btn_dashboard.value;
+        if (!new_value) return;
+        const parsed_value = new_value.toLowerCase().replace(/-/g, "_");
+        const Rawdata = TransactionsData[parsed_value];
+        const Designated_data = Rawdata;
+        // UI values change
+        const container_info = document.querySelector('.right-expense-detail-by-category');
+        container_info.innerHTML = ''
+        let total = 0;
+        Object.entries(Designated_data).forEach(([category, item]) => {
+            total += item.total
+        })
+        Object.entries(Designated_data).forEach(([category, item]) => {
+            //  const category = item.category;
+            const amount = Math.round(item.total);
+            const newli = document.createElement('li');
+            const percent = Math.round(((amount / total) * 100).toFixed(1));
+            const color = item.color
+            newli.innerHTML = `<span class="legend-dot" style="background-color: ${color};"></span>
+                                    <span>${category}</span>
+                                    <span class="legend-amount">$${amount}</span>
+                                    <span class="legend-percent">${percent}%</span>`
+            container_info.appendChild(newli)
+        })
     }
 }
 
@@ -180,3 +218,8 @@ function switch_category(value) {
     const firstVisible = [...visible_option].find(o => o.style.display !== 'none');
     if (firstVisible) selector.value = firstVisible.value;
 };
+
+
+// TODO: Make a function that gets last 4 transactions from tab and prints on dashboard.
+// TODO: Dashboard update full 
+//TODO: reload and display correct data in UI from local storage
