@@ -102,7 +102,7 @@ function confirmTransaction() {
 
     })
     if (Proceed == true) {
-        let ParsedAmount = CurrencyFormat(Amount);
+        let ParsedAmount = `+${CurrencyFormat(Amount)}`;
         if (Type == 'expense') ParsedAmount = `-${CurrencyFormat(Amount)}`;
         // Hide toast and blur Element
         const toast_existing = document.querySelector('.Transaction_toast');
@@ -208,9 +208,37 @@ function confirmTransaction() {
         income_Card.textContent = CurrencyFormat(TransactionsData.totals.this_month.income);
         expense_Card.textContent = CurrencyFormat(TransactionsData.totals.this_month.expense);
         balance_Card.textContent = CurrencyFormat(TransactionsData.totals.this_month.balance);
+        // -- recent transactions update
+        const recent_html = document.createElement('li');
+        recent_html.classList.add('transaction-dashboard');
+        recent_html.innerHTML =
+            `<span class="icon-category"><img src="${PicSrc}" alt=""></span>
+                                <span class="info-transaction-dashboard">
+                                    <span class="title-transaction-dashboard">${Heading}</span>
+                                    <span class="date-transaction-dashboard">${formattedDate}</span>
+                                </span>
+                                <span class="money-trasactions amount-${Type}">${ParsedAmount}</span>`
+        // delete old
+        const firstLi = document.querySelector('.transaction-list-dashboard').firstElementChild;
+        firstLi.remove();
+        // add new
+        document.querySelector('.transaction-list-dashboard').prepend(recent_html);
+        // Categories tab update
+        // get the corresponding row of category UI from category given
+        const Category_li = document.querySelector(`[data-category-tab='${Category}']`);
+        const Total_category_Amount = TransactionsData.this_month[Category.toLowerCase()].total;
+        let Total_Type_Amount = TransactionsData.totals.this_month.expense;
+        if (Type == 'expense') {
+            Category_li.querySelector('.amount-expense').innerHTML = `-${CurrencyFormat(Total_category_Amount)}`;
+            document.querySelector('.total-category-expense').innerHTML = `-${CurrencyFormat(Total_Type_Amount)}`
+        }
+        else {
+            Total_Type_Amount = TransactionsData.totals.this_month.income
+            Category_li.querySelector('.amount-income').innerHTML = `+${CurrencyFormat(Total_category_Amount)}`;
+            document.querySelector('.total-category-income').innerHTML = `+${CurrencyFormat(Total_Type_Amount)}`
+        }
     }
 }
-
 // cross btn 
 function cross_T() {
     // remove toast and background blur
@@ -239,3 +267,5 @@ function switch_category(value) {
 // TODO: Make a function that gets last 4 transactions from tab and prints on dashboard.
 // TODO: Dashboard update full 
 //TODO: reload and display correct data in UI from local storage
+// FIXME: Handle education row in category
+// BUG: values go with signs on dashboard (cards)
