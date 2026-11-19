@@ -276,3 +276,4 @@ function switch_category(value) {
 
 // TODO: Make a function that gets last 4 transactions from tab and prints on dashboard.
 //TODO: reload and display correct data in UI from local storage ( rerun all filters on reload), (data exchange from this_month to others if outdated)
+//TODO: On delete transaction logic
