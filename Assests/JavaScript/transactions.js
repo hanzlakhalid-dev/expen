@@ -103,6 +103,11 @@ function confirmTransaction() {
     })
     if (Proceed == true) {
         let ParsedAmount = `+${CurrencyFormat(Amount)}`;
+        let parsed_Category = Category;
+        if (parsed_Category == 'others_expense' || parsed_Category == 'others_income') {
+            console.log('ran')
+            parsed_Category = 'others'
+        }
         if (Type == 'expense') ParsedAmount = `-${CurrencyFormat(Amount)}`;
         // Hide toast and blur Element
         const toast_existing = document.querySelector('.Transaction_toast');
@@ -139,7 +144,7 @@ function confirmTransaction() {
                             <span class="cell-desc">
                                 <span class="desc-title">${Heading}</span>
                                 </span>
-                                <span class="cell-category"><span class="pill pill-indigo">${Category}</span></span>
+                                <span class="cell-category"><span class="pill pill-indigo">${parsed_Category}</span></span>
                             <span class="cell-type type-${Type}">${Type}</span>
                             <span class="cell-amount amount-${Type}">${ParsedAmount}</span>
                             <span class="cell-actions">
@@ -190,7 +195,6 @@ function confirmTransaction() {
             total += item.total
         })
         Object.entries(Designated_data).forEach(([category, item]) => {
-            //  const category = item.category;
             const amount = Math.round(item.total);
             const newli = document.createElement('li');
             const percent = Math.round(((amount / total) * 100).toFixed(1));
@@ -219,7 +223,7 @@ function confirmTransaction() {
                                 </span>
                                 <span class="money-trasactions amount-${Type}">${ParsedAmount}</span>`
         // delete old
-        const firstLi = document.querySelector('.transaction-list-dashboard').firstElementChild;
+        const firstLi = document.querySelector('.transaction-list-dashboard').lastElementChild;
         firstLi.remove();
         // add new
         document.querySelector('.transaction-list-dashboard').prepend(recent_html);
@@ -265,7 +269,4 @@ function switch_category(value) {
 
 
 // TODO: Make a function that gets last 4 transactions from tab and prints on dashboard.
-// TODO: Dashboard update full 
-//TODO: reload and display correct data in UI from local storage
-// FIXME: Handle education row in category
-// BUG: values go with signs on dashboard (cards)
+//TODO: reload and display correct data in UI from local storage ( rerun all filters on reload), (data exchange from this_month to others if outdated)
