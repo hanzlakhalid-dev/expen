@@ -102,6 +102,12 @@ function confirmTransaction() {
 
     })
     if (Proceed == true) {
+        // Check if it is costing more than balance
+        if(TransactionsData.totals.this_month.balance < Number(Amount) && Type == 'expense'){
+            ShowToast('Error', `The transaction can't exceed our balance`, 'error');
+            return;
+        }
+        // Go forward
         let ParsedAmount = `+${CurrencyFormat(Amount)}`;
         let parsed_Category = Category;
         if (parsed_Category == 'others_expense' || parsed_Category == 'others_income') {
@@ -165,7 +171,7 @@ function confirmTransaction() {
             TransactionsData.totals.this_month.balance += Number(Amount);
         }
         else {
-            TransactionsData.totals.this_month.expense -= Number(Amount);
+            TransactionsData.totals.this_month.expense += Number(Amount);
             TransactionsData.totals.this_month.balance -= Number(Amount);
         }
 
