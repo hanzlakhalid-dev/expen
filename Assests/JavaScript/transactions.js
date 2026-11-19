@@ -121,12 +121,12 @@ function confirmTransaction() {
         const blurE = document.querySelector('.backdrop');
         blurE.remove();
         // get today date
+        const UniqueId = Date.now();
         const dateObj = new Date()
         const date = dateObj.toISOString().split('T')[0];
         const month = dateObj.toLocaleString('en-US', { month: 'short' });
         const day = dateObj.toLocaleString('en-US', { day: 'numeric' });
         const year = dateObj.toLocaleString('en-US', { year: 'numeric' });
-
         const formattedDate = `${month} ${day}, ${year}`;
         const formattedTime = dateObj.toLocaleTimeString('en-US', {
             hour: 'numeric',
@@ -164,7 +164,7 @@ function confirmTransaction() {
                                 `
         // Data update
         const cat = TransactionsData.this_month[Category.toLowerCase()];
-        cat.Transactions.push({ transaction: Heading, amount: Number(Amount) });
+        cat.Transactions.push({ transaction: Heading, amount: Number(Amount), id: UniqueId, dateCreation: date });
         cat.total = cat.Transactions.reduce((s, t) => s + t.amount, 0);
         if (Type == 'income') {
             TransactionsData.totals.this_month.income += Number(Amount);
@@ -273,7 +273,11 @@ function switch_category(value) {
     if (firstVisible) selector.value = firstVisible.value;
 };
 
+// Delete transaction function
+function Delete_Transaction() {
 
+}
 // TODO: Make a function that gets last 4 transactions from tab and prints on dashboard.
 //TODO: reload and display correct data in UI from local storage ( rerun all filters on reload), (data exchange from this_month to others if outdated)
-//TODO: On delete transaction logic
+
+//WIP: On delete transaction logic
