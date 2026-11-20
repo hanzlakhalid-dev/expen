@@ -32,6 +32,9 @@ document.body.addEventListener('click', function (e) {
     if (e.target.closest('#discardProfileBtn')) {
         ProfileEdit_Discard();
     }
+    if (e.target.closest('.delete-transaction-btn')){
+        Delete_Transaction()
+    }
 });
 document.body.addEventListener('change', function (e) {
     if (e.target.closest('#filterType_add_transaction')) {

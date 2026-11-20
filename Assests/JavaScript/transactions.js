@@ -140,6 +140,8 @@ function confirmTransaction() {
         Transaction_row.setAttribute('data-category', Category);
         Transaction_row.setAttribute('data-type', Type);
         Transaction_row.setAttribute('data-date', date);
+        Transaction_row.setAttribute('data-id', UniqueId);
+        TransactionsData.setAttribute('data-dateCreation', date)
         Transaction_row.setAttribute('data-transaction-keyword', Heading);
         Transaction_row.innerHTML = `
                             <span class="cell-icon"><img src="${PicSrc}" alt=""></span>
@@ -275,7 +277,7 @@ function switch_category(value) {
 
 // Delete transaction function
 function Delete_Transaction() {
-
+    
 }
 // TODO: Make a function that gets last 4 transactions from tab and prints on dashboard.
 //TODO: reload and display correct data in UI from local storage ( rerun all filters on reload), (data exchange from this_month to others if outdated)
