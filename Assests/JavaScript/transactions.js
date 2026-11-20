@@ -103,7 +103,7 @@ function confirmTransaction() {
     })
     if (Proceed == true) {
         // Check if it is costing more than balance
-        if(TransactionsData.totals.this_month.balance < Number(Amount) && Type == 'expense'){
+        if (TransactionsData.totals.this_month.balance < Number(Amount) && Type == 'expense') {
             ShowToast('Error', `The transaction can't exceed our balance`, 'error');
             return;
         }
@@ -276,10 +276,24 @@ function switch_category(value) {
 };
 
 // Delete transaction function
-function Delete_Transaction() {
-    
+function Delete_Transaction(e) {
+    // Get html data
+    const transaction_Li = e.target.closest('li');
+    const HTML_ID = transaction_Li.getAttribute('data-id');
+    const Category = transaction_Li.getAttribute('data-category');
+    const Date = transaction_Li.getAttribute('data-date');
+    const Variable_group = getDataVariable(Date);
+    console.log(Variable_group)
+    // Get & delete localstorage data and modify Transactionmodel variable
+    const localStorage_data = JSON.parse(localStorage.getItem('Transactions'));
+    const Category_data = localStorage_data.this_month;
+    //  console.log(Category_data);
+    // Update Html
 }
 // TODO: Make a function that gets last 4 transactions from tab and prints on dashboard.
 //TODO: reload and display correct data in UI from local storage ( rerun all filters on reload), (data exchange from this_month to others if outdated)
 
-//WIP: On delete transaction logic
+// Function to get date and return data accessing variables i.e this_month, last_month
+function getDataVariable(date) {
+
+}

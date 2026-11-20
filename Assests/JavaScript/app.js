@@ -33,7 +33,7 @@ document.body.addEventListener('click', function (e) {
         ProfileEdit_Discard();
     }
     if (e.target.closest('.delete-transaction-btn')){
-        Delete_Transaction()
+        Delete_Transaction(e)
     }
 });
 document.body.addEventListener('change', function (e) {
